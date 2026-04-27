@@ -105,6 +105,184 @@
       .believe-section { padding: 72px 24px; }
       .cta-section { padding: 72px 24px; }
     }
+    /* ── SMOOTH GLOBAL ── */
+    html { scroll-behavior: smooth; }
+    * { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+    a, button { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ── BUTTON ANIMATIONS ── */
+    .btn-primary {
+      position: relative; overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,0.12);
+      transform: translateX(-100%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .btn-primary:hover::after { transform: translateX(0); }
+    .btn-primary:hover { transform: translateY(-3px) !important; box-shadow: 0 12px 40px rgba(249,115,22,0.4) !important; }
+    .btn-primary:active { transform: translateY(-1px) !important; }
+
+    .btn-secondary {
+      transition: all 0.25s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .btn-secondary:hover { transform: translateY(-2px) !important; }
+
+    /* ── NAV LINK UNDERLINE ANIMATION ── */
+    .nav-links a {
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -3px; left: 0; right: 0;
+      height: 1px; background: var(--orange);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta::after { display: none !important; }
+
+    /* ── CARD HOVER LIFT ── */
+    .how-card, .why-card, .faq-item, .tier-card,
+    .story-card, .value-card, .serve-card, .believe-card {
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+
+    /* ── STAT NUMBER COUNT-UP EFFECT ── */
+    .stat-number {
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .stat:hover .stat-number { transform: scale(1.08); }
+
+    /* ── FLOATING BUTTON PULSE ── */
+    .float-btn {
+      animation: floatPulse 3s ease-in-out infinite;
+    }
+    @keyframes floatPulse {
+      0%, 100% { box-shadow: 0 4px 24px rgba(249,115,22,0.4); }
+      50% { box-shadow: 0 4px 40px rgba(249,115,22,0.7); }
+    }
+    .float-btn:hover { animation: none !important; }
+
+    /* ── HERO ENTRANCE ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ── ORANGE GLOW ON HOVER FOR CARDS ── */
+    .tier-card:hover {
+      box-shadow: 0 16px 48px rgba(249,115,22,0.12);
+    }
+    .team-card:hover {
+      box-shadow: 0 20px 60px rgba(249,115,22,0.1);
+    }
+
+    /* ── SMOOTH NAV BACKGROUND ── */
+    nav {
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s !important;
+    }
+    nav.scrolled {
+      background: rgba(10,10,10,0.98) !important;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    }
+
+    /* ── HOW NUMBER SLIDE ── */
+    .how-card { overflow: hidden; }
+    .how-number {
+      transition: color 0.3s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .how-card:hover .how-number { transform: translateX(8px); }
+
+    /* ── PROOF BAR ITEMS ── */
+    .proof-item {
+      transition: color 0.2s;
+    }
+    .proof-item:hover { color: var(--orange); }
+
+    /* ── FOOTER LINK HOVER ── */
+    .footer-col a {
+      transition: color 0.2s, transform 0.2s !important;
+      display: inline-block;
+    }
+    .footer-col a:hover { transform: translateX(4px); }
+
+    /* ── MOBILE MENU SLIDE ── */
+    .mobile-menu {
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.25s !important;
+      display: flex !important;
+      pointer-events: none;
+    }
+    .mobile-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ── SKILL TAG HOVER ── */
+    .skill-tag {
+      transition: all 0.2s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .skill-tag:hover {
+      background: rgba(249,115,22,0.1);
+      border-color: var(--orange);
+      color: var(--orange);
+      transform: translateY(-1px);
+    }
+
+    /* ── TIER BADGE PULSE ── */
+    .badge-active {
+      animation: badgePulse 2.5s ease-in-out infinite;
+    }
+    @keyframes badgePulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(249,115,22,0.3); }
+      50% { box-shadow: 0 0 0 6px rgba(249,115,22,0); }
+    }
+
+    /* ── CONTACT ICON HOVER ── */
+    .contact-icon {
+      transition: all 0.25s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .contact-item:hover .contact-icon {
+      background: var(--orange);
+      border-color: var(--orange);
+      transform: scale(1.1);
+    }
+
+    /* ── MISSION STRIP ITEM HOVER ── */
+    .mission-item {
+      transition: transform 0.25s;
+    }
+    .mission-item:hover { transform: translateY(-3px); }
+
+    /* ── FLOAT PANEL SMOOTH ── */
+    .float-panel {
+      transition: opacity 0.25s, transform 0.25s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+
   </style>
 </head>
 <body>
@@ -131,13 +309,13 @@
     <a href="https://calendly.com/clairoautomation/30min" target="_blank" class="mobile-cta">Start Free Trial →</a>
   </div>
   <div class="page-hero">
-    <div class="page-tag">The People Behind Clairo</div>
+    <div class="page-tag reveal">The People Behind Clairo</div>
     <h1>MEET THE <span>TEAM</span></h1>
     <p>Two people from Houston who got tired of watching local businesses fall behind. So we built the solution ourselves.</p>
   </div>
   <div class="team-section">
     <div class="team-grid">
-      <div class="team-card">
+      <div class="team-card reveal">
         <div class="team-card-top">
           <div class="team-avatar">MA</div>
           <div class="team-name">Muhammad Askari</div>
@@ -156,7 +334,7 @@
           </div>
         </div>
       </div>
-      <div class="team-card">
+      <div class="team-card reveal">
         <div class="team-card-top">
           <div class="team-avatar">AA</div>
           <div class="team-name">Ali Abbas</div>
@@ -180,16 +358,16 @@
   <div class="believe-section">
     <div class="believe-inner">
       <div class="believe-header">
-        <div class="section-tag">How We Work</div>
+        <div class="section-tag reveal">How We Work</div>
         <div class="section-title">WHAT DRIVES US EVERY DAY</div>
       </div>
       <div class="believe-grid">
-        <div class="believe-card"><div class="believe-num">01</div><h3>Small teams move faster</h3><p>We're two people. That means when you need something fixed, changed, or improved — it happens fast. No tickets, no queues, no corporate layers.</p></div>
-        <div class="believe-card"><div class="believe-num">02</div><h3>Local businesses deserve better tools</h3><p>The same AI that powers Fortune 500 companies is available to a 10-agent brokerage in Houston. We make that access real and affordable.</p></div>
-        <div class="believe-card"><div class="believe-num">03</div><h3>You should own what you pay for</h3><p>We don't believe in locking clients into platforms they don't control. Everything we build, you own. Full code, full access, full control.</p></div>
-        <div class="believe-card"><div class="believe-num">04</div><h3>Results over promises</h3><p>We let the system speak for itself. Book a call, see the demo live, watch a lead get scored and your phone buzz within 60 seconds. Then decide.</p></div>
-        <div class="believe-card"><div class="believe-num">05</div><h3>Relationships outlast contracts</h3><p>We don't want clients — we want partners. The businesses we work with aren't account numbers. They're people we're invested in seeing succeed.</p></div>
-        <div class="believe-card"><div class="believe-num">06</div><h3>Automation should feel human</h3><p>The best automation is invisible. Your clients never know a machine scored their lead. They just know your agent called them fast. That's the goal.</p></div>
+        <div class="believe-card reveal"><div class="believe-num">01</div><h3>Small teams move faster</h3><p>We're two people. That means when you need something fixed, changed, or improved — it happens fast. No tickets, no queues, no corporate layers.</p></div>
+        <div class="believe-card reveal"><div class="believe-num">02</div><h3>Local businesses deserve better tools</h3><p>The same AI that powers Fortune 500 companies is available to a 10-agent brokerage in Houston. We make that access real and affordable.</p></div>
+        <div class="believe-card reveal"><div class="believe-num">03</div><h3>You should own what you pay for</h3><p>We don't believe in locking clients into platforms they don't control. Everything we build, you own. Full code, full access, full control.</p></div>
+        <div class="believe-card reveal"><div class="believe-num">04</div><h3>Results over promises</h3><p>We let the system speak for itself. Book a call, see the demo live, watch a lead get scored and your phone buzz within 60 seconds. Then decide.</p></div>
+        <div class="believe-card reveal"><div class="believe-num">05</div><h3>Relationships outlast contracts</h3><p>We don't want clients — we want partners. The businesses we work with aren't account numbers. They're people we're invested in seeing succeed.</p></div>
+        <div class="believe-card reveal"><div class="believe-num">06</div><h3>Automation should feel human</h3><p>The best automation is invisible. Your clients never know a machine scored their lead. They just know your agent called them fast. That's the goal.</p></div>
       </div>
     </div>
   </div>
@@ -223,7 +401,7 @@
       <div class="footer-col">
         <span class="footer-col-title">Contact</span>
         <a href="contact.html">Get In Touch</a>
-        <a href="mailto:clairoautomation@gmail.com">clairoautomation@gmail.com</a>
+        <a href="mailto:clairo@gmail.com">clairo@gmail.com</a>
         <a href="https://calendly.com/clairoautomation/30min" target="_blank">Book a Call</a>
       </div>
       <div class="footer-col">
@@ -280,25 +458,77 @@
       <p>We'll get back to you within 24 hours.</p>
     </div>
   </div>
+  
   <script>
-    function toggleMobileMenu() { document.getElementById("mobileMenu").classList.toggle("open"); }
-    function togglePanel() {
-      const panel = document.getElementById("floatPanel");
-      const msgIcon = document.getElementById("float-icon-msg");
-      const xIcon = document.getElementById("float-icon-x");
-      const isOpen = panel.classList.contains("open");
-      panel.classList.toggle("open");
-      msgIcon.style.display = isOpen ? "block" : "none";
-      xIcon.style.display = isOpen ? "none" : "block";
+    // ── Scroll reveal ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Nav scroll effect ──
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }, { passive: true });
+
+    // ── Mobile menu ──
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
     }
-    document.getElementById("floatForm").addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const form = e.target;
-      try {
-        const res = await fetch(form.action, { method: "POST", body: new FormData(form), headers: { "Accept": "application/json" } });
-        if (res.ok) { form.style.display = "none"; document.getElementById("floatSuccess").style.display = "block"; }
-      } catch(err) { alert("Something went wrong. Please email us at clairoautomation@gmail.com"); }
+
+    // ── Float widget ──
+    function togglePanel() {
+      const panel = document.getElementById('floatPanel');
+      const msgIcon = document.getElementById('float-icon-msg');
+      const xIcon = document.getElementById('float-icon-x');
+      const isOpen = panel.classList.contains('open');
+      panel.classList.toggle('open');
+      msgIcon.style.display = isOpen ? 'block' : 'none';
+      xIcon.style.display = isOpen ? 'none' : 'block';
+    }
+
+    // ── Formspree submit ──
+    const floatForm = document.getElementById('floatForm');
+    if (floatForm) {
+      floatForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('button[type="submit"]');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        try {
+          const res = await fetch(this.action, {
+            method: 'POST', body: new FormData(this),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            this.style.display = 'none';
+            document.getElementById('floatSuccess').style.display = 'block';
+          } else {
+            btn.textContent = 'Try again';
+            btn.disabled = false;
+          }
+        } catch {
+          btn.textContent = 'Try again';
+          btn.disabled = false;
+        }
+      });
+    }
+
+    // ── Smooth anchor scroll ──
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
     });
   </script>
+
 </body>
 </html>

@@ -121,6 +121,184 @@
       .values-section { padding: 72px 24px; }
       .cta-section { padding: 72px 24px; }
     }
+    /* ── SMOOTH GLOBAL ── */
+    html { scroll-behavior: smooth; }
+    * { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+    a, button { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ── BUTTON ANIMATIONS ── */
+    .btn-primary {
+      position: relative; overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,0.12);
+      transform: translateX(-100%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .btn-primary:hover::after { transform: translateX(0); }
+    .btn-primary:hover { transform: translateY(-3px) !important; box-shadow: 0 12px 40px rgba(249,115,22,0.4) !important; }
+    .btn-primary:active { transform: translateY(-1px) !important; }
+
+    .btn-secondary {
+      transition: all 0.25s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .btn-secondary:hover { transform: translateY(-2px) !important; }
+
+    /* ── NAV LINK UNDERLINE ANIMATION ── */
+    .nav-links a {
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -3px; left: 0; right: 0;
+      height: 1px; background: var(--orange);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta::after { display: none !important; }
+
+    /* ── CARD HOVER LIFT ── */
+    .how-card, .why-card, .faq-item, .tier-card,
+    .story-card, .value-card, .serve-card, .believe-card {
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+
+    /* ── STAT NUMBER COUNT-UP EFFECT ── */
+    .stat-number {
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .stat:hover .stat-number { transform: scale(1.08); }
+
+    /* ── FLOATING BUTTON PULSE ── */
+    .float-btn {
+      animation: floatPulse 3s ease-in-out infinite;
+    }
+    @keyframes floatPulse {
+      0%, 100% { box-shadow: 0 4px 24px rgba(249,115,22,0.4); }
+      50% { box-shadow: 0 4px 40px rgba(249,115,22,0.7); }
+    }
+    .float-btn:hover { animation: none !important; }
+
+    /* ── HERO ENTRANCE ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ── ORANGE GLOW ON HOVER FOR CARDS ── */
+    .tier-card:hover {
+      box-shadow: 0 16px 48px rgba(249,115,22,0.12);
+    }
+    .team-card:hover {
+      box-shadow: 0 20px 60px rgba(249,115,22,0.1);
+    }
+
+    /* ── SMOOTH NAV BACKGROUND ── */
+    nav {
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s !important;
+    }
+    nav.scrolled {
+      background: rgba(10,10,10,0.98) !important;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    }
+
+    /* ── HOW NUMBER SLIDE ── */
+    .how-card { overflow: hidden; }
+    .how-number {
+      transition: color 0.3s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .how-card:hover .how-number { transform: translateX(8px); }
+
+    /* ── PROOF BAR ITEMS ── */
+    .proof-item {
+      transition: color 0.2s;
+    }
+    .proof-item:hover { color: var(--orange); }
+
+    /* ── FOOTER LINK HOVER ── */
+    .footer-col a {
+      transition: color 0.2s, transform 0.2s !important;
+      display: inline-block;
+    }
+    .footer-col a:hover { transform: translateX(4px); }
+
+    /* ── MOBILE MENU SLIDE ── */
+    .mobile-menu {
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.25s !important;
+      display: flex !important;
+      pointer-events: none;
+    }
+    .mobile-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ── SKILL TAG HOVER ── */
+    .skill-tag {
+      transition: all 0.2s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .skill-tag:hover {
+      background: rgba(249,115,22,0.1);
+      border-color: var(--orange);
+      color: var(--orange);
+      transform: translateY(-1px);
+    }
+
+    /* ── TIER BADGE PULSE ── */
+    .badge-active {
+      animation: badgePulse 2.5s ease-in-out infinite;
+    }
+    @keyframes badgePulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(249,115,22,0.3); }
+      50% { box-shadow: 0 0 0 6px rgba(249,115,22,0); }
+    }
+
+    /* ── CONTACT ICON HOVER ── */
+    .contact-icon {
+      transition: all 0.25s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .contact-item:hover .contact-icon {
+      background: var(--orange);
+      border-color: var(--orange);
+      transform: scale(1.1);
+    }
+
+    /* ── MISSION STRIP ITEM HOVER ── */
+    .mission-item {
+      transition: transform 0.25s;
+    }
+    .mission-item:hover { transform: translateY(-3px); }
+
+    /* ── FLOAT PANEL SMOOTH ── */
+    .float-panel {
+      transition: opacity 0.25s, transform 0.25s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+
   </style>
 </head>
 <body>
@@ -148,7 +326,7 @@
   </div>
   <div class="hero">
     <div>
-      <div class="page-tag">About Clairo</div>
+      <div class="page-tag reveal">About Clairo</div>
       <h1>WE HELP LOCAL<br>BUSINESSES<br><span>ADAPT &amp; GROW</span></h1>
       <p class="hero-body">Clairo was built for one reason — small businesses in Houston deserve the same powerful tools that enterprise companies use. AI-powered automation shouldn't be exclusive to corporations with massive budgets.</p>
       <p class="hero-body">We started with real estate because we saw brokerages losing deals every day not from lack of leads, but from slow follow-up. We fixed that. Now we're building the full toolkit that local businesses need to compete and win.</p>
@@ -170,7 +348,7 @@
   <div class="story-section">
     <div class="story-grid">
       <div class="story-left">
-        <div class="section-tag">Our Story</div>
+        <div class="section-tag reveal">Our Story</div>
         <h2>BUILT IN HOUSTON.<br>BUILT FOR HOUSTON.</h2>
         <p class="story-p">Clairo was founded in 2026 by two people who were frustrated watching local businesses struggle to keep up with automation while larger competitors pulled further ahead.</p>
         <p class="story-p"><strong>The problem wasn't effort.</strong> Local business owners work harder than anyone. The problem was access — access to the right tools, the right systems, and the right expertise.</p>
@@ -179,39 +357,39 @@
         <p class="story-p">We're here to change that. One business at a time.</p>
       </div>
       <div class="story-right">
-        <div class="story-card"><h3>Full Ownership</h3><p>Everything we build for you is yours. No vendor lock-in, no proprietary black boxes. If you ever leave, you take everything with you.</p></div>
-        <div class="story-card"><h3>Complete Customization</h3><p>We don't sell a SaaS subscription with features you can't change. We build custom systems tailored specifically to how your business operates.</p></div>
-        <div class="story-card"><h3>Local First</h3><p>We're a Houston company serving Houston businesses. We understand the market, the culture, and the competitive landscape. We're your neighbor, not a distant vendor.</p></div>
-        <div class="story-card"><h3>Adapting Together</h3><p>Automation is moving fast. We stay ahead of it so you don't have to. As technology evolves, your systems evolve with it.</p></div>
+        <div class="story-card reveal"><h3>Full Ownership</h3><p>Everything we build for you is yours. No vendor lock-in, no proprietary black boxes. If you ever leave, you take everything with you.</p></div>
+        <div class="story-card reveal"><h3>Complete Customization</h3><p>We don't sell a SaaS subscription with features you can't change. We build custom systems tailored specifically to how your business operates.</p></div>
+        <div class="story-card reveal"><h3>Local First</h3><p>We're a Houston company serving Houston businesses. We understand the market, the culture, and the competitive landscape. We're your neighbor, not a distant vendor.</p></div>
+        <div class="story-card reveal"><h3>Adapting Together</h3><p>Automation is moving fast. We stay ahead of it so you don't have to. As technology evolves, your systems evolve with it.</p></div>
       </div>
     </div>
   </div>
   <div class="values-section">
     <div class="values-inner">
       <div class="values-header">
-        <div class="section-tag">What We Stand For</div>
+        <div class="section-tag reveal">What We Stand For</div>
         <h2>OUR CORE VALUES</h2>
       </div>
       <div class="values-grid">
-        <div class="value-card"><div class="value-icon">&#129309;</div><h3>Trust</h3><p>We say what we do and do what we say. No overpromising, no hidden fees, no surprises. Trust is built one conversation at a time.</p></div>
-        <div class="value-card"><div class="value-icon">&#127807;</div><h3>Partnership</h3><p>We succeed when you succeed. Your growth is our growth. We're not a vendor you pay monthly — we're a partner invested in your outcomes.</p></div>
-        <div class="value-card"><div class="value-icon">&#128274;</div><h3>Loyalty</h3><p>We build relationships, not transactions. We earn loyalty by delivering results consistently and showing up when it matters.</p></div>
-        <div class="value-card"><div class="value-icon">&#9889;</div><h3>Adaptability</h3><p>The business world moves fast. We help local businesses move with it — adopting the right technology at the right time.</p></div>
+        <div class="value-card reveal"><div class="value-icon">&#129309;</div><h3>Trust</h3><p>We say what we do and do what we say. No overpromising, no hidden fees, no surprises. Trust is built one conversation at a time.</p></div>
+        <div class="value-card reveal"><div class="value-icon">&#127807;</div><h3>Partnership</h3><p>We succeed when you succeed. Your growth is our growth. We're not a vendor you pay monthly — we're a partner invested in your outcomes.</p></div>
+        <div class="value-card reveal"><div class="value-icon">&#128274;</div><h3>Loyalty</h3><p>We build relationships, not transactions. We earn loyalty by delivering results consistently and showing up when it matters.</p></div>
+        <div class="value-card reveal"><div class="value-icon">&#9889;</div><h3>Adaptability</h3><p>The business world moves fast. We help local businesses move with it — adopting the right technology at the right time.</p></div>
       </div>
     </div>
   </div>
   <div class="serve-section">
     <div class="serve-header">
-      <div class="section-tag">Who We Serve</div>
+      <div class="section-tag reveal">Who We Serve</div>
       <h2>BUILT FOR LOCAL<br>BUSINESSES</h2>
       <p>We started with real estate and we're expanding. If your business depends on leads, clients, and follow-up — Clairo can help.</p>
     </div>
     <div class="serve-grid">
-      <div class="serve-card"><div class="serve-icon">&#127968;</div><h3>Real Estate</h3><p>Lead scoring, agent alerts, CRM automation. Live now.</p></div>
-      <div class="serve-card"><div class="serve-icon">&#9878;&#65039;</div><h3>Law Firms</h3><p>Client intake automation and follow-up workflows. Coming soon.</p></div>
-      <div class="serve-card"><div class="serve-icon">&#127973;</div><h3>Medical Offices</h3><p>Appointment follow-up and patient inquiry routing. Coming soon.</p></div>
-      <div class="serve-card"><div class="serve-icon">&#128737;&#65039;</div><h3>Insurance</h3><p>Quote request automation and lead qualification. Coming soon.</p></div>
-      <div class="serve-card"><div class="serve-icon">&#128188;</div><h3>Small Business</h3><p>Any local business that runs on leads and follow-up. Let's talk.</p></div>
+      <div class="serve-card reveal"><div class="serve-icon">&#127968;</div><h3>Real Estate</h3><p>Lead scoring, agent alerts, CRM automation. Live now.</p></div>
+      <div class="serve-card reveal"><div class="serve-icon">&#9878;&#65039;</div><h3>Law Firms</h3><p>Client intake automation and follow-up workflows. Coming soon.</p></div>
+      <div class="serve-card reveal"><div class="serve-icon">&#127973;</div><h3>Medical Offices</h3><p>Appointment follow-up and patient inquiry routing. Coming soon.</p></div>
+      <div class="serve-card reveal"><div class="serve-icon">&#128737;&#65039;</div><h3>Insurance</h3><p>Quote request automation and lead qualification. Coming soon.</p></div>
+      <div class="serve-card reveal"><div class="serve-icon">&#128188;</div><h3>Small Business</h3><p>Any local business that runs on leads and follow-up. Let's talk.</p></div>
     </div>
   </div>
   <div class="cta-section">
@@ -244,7 +422,7 @@
       <div class="footer-col">
         <span class="footer-col-title">Contact</span>
         <a href="contact.html">Get In Touch</a>
-        <a href="mailto:clairoautomation@gmail.com">clairoautomation@gmail.com</a>
+        <a href="mailto:clairo@gmail.com">clairo@gmail.com</a>
         <a href="https://calendly.com/clairoautomation/30min" target="_blank">Book a Call</a>
       </div>
       <div class="footer-col">
@@ -301,25 +479,77 @@
       <p>We'll get back to you within 24 hours.</p>
     </div>
   </div>
+  
   <script>
-    function toggleMobileMenu() { document.getElementById("mobileMenu").classList.toggle("open"); }
-    function togglePanel() {
-      const panel = document.getElementById("floatPanel");
-      const msgIcon = document.getElementById("float-icon-msg");
-      const xIcon = document.getElementById("float-icon-x");
-      const isOpen = panel.classList.contains("open");
-      panel.classList.toggle("open");
-      msgIcon.style.display = isOpen ? "block" : "none";
-      xIcon.style.display = isOpen ? "none" : "block";
+    // ── Scroll reveal ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Nav scroll effect ──
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }, { passive: true });
+
+    // ── Mobile menu ──
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
     }
-    document.getElementById("floatForm").addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const form = e.target;
-      try {
-        const res = await fetch(form.action, { method: "POST", body: new FormData(form), headers: { "Accept": "application/json" } });
-        if (res.ok) { form.style.display = "none"; document.getElementById("floatSuccess").style.display = "block"; }
-      } catch(err) { alert("Something went wrong. Please email us at clairoautomation@gmail.com"); }
+
+    // ── Float widget ──
+    function togglePanel() {
+      const panel = document.getElementById('floatPanel');
+      const msgIcon = document.getElementById('float-icon-msg');
+      const xIcon = document.getElementById('float-icon-x');
+      const isOpen = panel.classList.contains('open');
+      panel.classList.toggle('open');
+      msgIcon.style.display = isOpen ? 'block' : 'none';
+      xIcon.style.display = isOpen ? 'none' : 'block';
+    }
+
+    // ── Formspree submit ──
+    const floatForm = document.getElementById('floatForm');
+    if (floatForm) {
+      floatForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('button[type="submit"]');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        try {
+          const res = await fetch(this.action, {
+            method: 'POST', body: new FormData(this),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            this.style.display = 'none';
+            document.getElementById('floatSuccess').style.display = 'block';
+          } else {
+            btn.textContent = 'Try again';
+            btn.disabled = false;
+          }
+        } catch {
+          btn.textContent = 'Try again';
+          btn.disabled = false;
+        }
+      });
+    }
+
+    // ── Smooth anchor scroll ──
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
     });
   </script>
+
 </body>
 </html>

@@ -189,6 +189,184 @@
       .stat { width: 100%; }
       .footer-links-grid { grid-template-columns: 1fr; }
     }
+    /* ── SMOOTH GLOBAL ── */
+    html { scroll-behavior: smooth; }
+    * { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+    a, button { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ── BUTTON ANIMATIONS ── */
+    .btn-primary {
+      position: relative; overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,0.12);
+      transform: translateX(-100%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .btn-primary:hover::after { transform: translateX(0); }
+    .btn-primary:hover { transform: translateY(-3px) !important; box-shadow: 0 12px 40px rgba(249,115,22,0.4) !important; }
+    .btn-primary:active { transform: translateY(-1px) !important; }
+
+    .btn-secondary {
+      transition: all 0.25s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .btn-secondary:hover { transform: translateY(-2px) !important; }
+
+    /* ── NAV LINK UNDERLINE ANIMATION ── */
+    .nav-links a {
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -3px; left: 0; right: 0;
+      height: 1px; background: var(--orange);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta::after { display: none !important; }
+
+    /* ── CARD HOVER LIFT ── */
+    .how-card, .why-card, .faq-item, .tier-card,
+    .story-card, .value-card, .serve-card, .believe-card {
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+
+    /* ── STAT NUMBER COUNT-UP EFFECT ── */
+    .stat-number {
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .stat:hover .stat-number { transform: scale(1.08); }
+
+    /* ── FLOATING BUTTON PULSE ── */
+    .float-btn {
+      animation: floatPulse 3s ease-in-out infinite;
+    }
+    @keyframes floatPulse {
+      0%, 100% { box-shadow: 0 4px 24px rgba(249,115,22,0.4); }
+      50% { box-shadow: 0 4px 40px rgba(249,115,22,0.7); }
+    }
+    .float-btn:hover { animation: none !important; }
+
+    /* ── HERO ENTRANCE ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ── ORANGE GLOW ON HOVER FOR CARDS ── */
+    .tier-card:hover {
+      box-shadow: 0 16px 48px rgba(249,115,22,0.12);
+    }
+    .team-card:hover {
+      box-shadow: 0 20px 60px rgba(249,115,22,0.1);
+    }
+
+    /* ── SMOOTH NAV BACKGROUND ── */
+    nav {
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s !important;
+    }
+    nav.scrolled {
+      background: rgba(10,10,10,0.98) !important;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    }
+
+    /* ── HOW NUMBER SLIDE ── */
+    .how-card { overflow: hidden; }
+    .how-number {
+      transition: color 0.3s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .how-card:hover .how-number { transform: translateX(8px); }
+
+    /* ── PROOF BAR ITEMS ── */
+    .proof-item {
+      transition: color 0.2s;
+    }
+    .proof-item:hover { color: var(--orange); }
+
+    /* ── FOOTER LINK HOVER ── */
+    .footer-col a {
+      transition: color 0.2s, transform 0.2s !important;
+      display: inline-block;
+    }
+    .footer-col a:hover { transform: translateX(4px); }
+
+    /* ── MOBILE MENU SLIDE ── */
+    .mobile-menu {
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.25s !important;
+      display: flex !important;
+      pointer-events: none;
+    }
+    .mobile-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ── SKILL TAG HOVER ── */
+    .skill-tag {
+      transition: all 0.2s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .skill-tag:hover {
+      background: rgba(249,115,22,0.1);
+      border-color: var(--orange);
+      color: var(--orange);
+      transform: translateY(-1px);
+    }
+
+    /* ── TIER BADGE PULSE ── */
+    .badge-active {
+      animation: badgePulse 2.5s ease-in-out infinite;
+    }
+    @keyframes badgePulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(249,115,22,0.3); }
+      50% { box-shadow: 0 0 0 6px rgba(249,115,22,0); }
+    }
+
+    /* ── CONTACT ICON HOVER ── */
+    .contact-icon {
+      transition: all 0.25s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+    .contact-item:hover .contact-icon {
+      background: var(--orange);
+      border-color: var(--orange);
+      transform: scale(1.1);
+    }
+
+    /* ── MISSION STRIP ITEM HOVER ── */
+    .mission-item {
+      transition: transform 0.25s;
+    }
+    .mission-item:hover { transform: translateY(-3px); }
+
+    /* ── FLOAT PANEL SMOOTH ── */
+    .float-panel {
+      transition: opacity 0.25s, transform 0.25s cubic-bezier(0.4,0,0.2,1) !important;
+    }
+
   </style>
 </head>
 <body>
@@ -220,22 +398,22 @@
   <!-- PROOF BAR -->
   <div class="proof-bar">
     <div class="proof-inner">
-      <div class="proof-item">
+      <div class="proof-item reveal">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
         <span>30-Day Free Trial — No Credit Card Required</span>
       </div>
       <div class="proof-dot"></div>
-      <div class="proof-item">
+      <div class="proof-item reveal">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
         <span>Setup in 3–5 Business Days</span>
       </div>
       <div class="proof-dot"></div>
-      <div class="proof-item">
+      <div class="proof-item reveal">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
         <span>Houston-Based Team</span>
       </div>
       <div class="proof-dot"></div>
-      <div class="proof-item">
+      <div class="proof-item reveal">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
         <span>No Contracts — Cancel Anytime</span>
       </div>
@@ -256,33 +434,33 @@
 
   <!-- STATS -->
   <div class="stats">
-    <div class="stat"><div class="stat-number">60s</div><div class="stat-label">Average agent alert time</div></div>
-    <div class="stat"><div class="stat-number">24/7</div><div class="stat-label">System runs without you</div></div>
-    <div class="stat"><div class="stat-number">30</div><div class="stat-label">Day free trial, no commitment</div></div>
-    <div class="stat"><div class="stat-number">0</div><div class="stat-label">Manual work required</div></div>
+    <div class="stat reveal"><div class="stat-number">60s</div><div class="stat-label">Average agent alert time</div></div>
+    <div class="stat reveal"><div class="stat-number">24/7</div><div class="stat-label">System runs without you</div></div>
+    <div class="stat reveal"><div class="stat-number">30</div><div class="stat-label">Day free trial, no commitment</div></div>
+    <div class="stat reveal"><div class="stat-number">0</div><div class="stat-label">Manual work required</div></div>
   </div>
 
   <!-- HOW IT WORKS -->
   <section>
-    <div class="section-tag">How it works</div>
+    <div class="section-tag reveal">How it works</div>
     <h2 class="section-title">FROM LEAD TO AGENT<br>IN UNDER A MINUTE</h2>
     <p class="section-sub">Every lead that fills out your form gets scored, logged, and routed automatically. Your agents only touch leads worth their time.</p>
     <div class="how-grid">
-      <div class="how-card"><div class="how-number">01</div><h3>Lead submits form</h3><p>A potential buyer or seller fills out the contact form on your brokerage website.</p></div>
-      <div class="how-card"><div class="how-number">02</div><h3>AI scores instantly</h3><p>Claude AI analyzes their message, budget, and timeline against live Houston market data and scores them HOT, WARM, or COLD.</p></div>
-      <div class="how-card"><div class="how-number">03</div><h3>Agent gets alerted</h3><p>HOT leads trigger an instant SMS to your agent with the lead's name, phone, budget, and timeline. Call them before the competition does.</p></div>
-      <div class="how-card"><div class="how-number">04</div><h3>Everything logged</h3><p>Every lead is saved to your live CRM dashboard automatically — scored, timestamped, and organized. Review your full pipeline anytime.</p></div>
+      <div class="how-card reveal"><div class="how-number">01</div><h3>Lead submits form</h3><p>A potential buyer or seller fills out the contact form on your brokerage website.</p></div>
+      <div class="how-card reveal"><div class="how-number">02</div><h3>AI scores instantly</h3><p>Claude AI analyzes their message, budget, and timeline against live Houston market data and scores them HOT, WARM, or COLD.</p></div>
+      <div class="how-card reveal"><div class="how-number">03</div><h3>Agent gets alerted</h3><p>HOT leads trigger an instant SMS to your agent with the lead's name, phone, budget, and timeline. Call them before the competition does.</p></div>
+      <div class="how-card reveal"><div class="how-number">04</div><h3>Everything logged</h3><p>Every lead is saved to your live CRM dashboard automatically — scored, timestamped, and organized. Review your full pipeline anytime.</p></div>
     </div>
   </section>
 
   <!-- TIERS -->
   <div class="tiers-wrap">
     <div class="tiers-inner">
-      <div class="section-tag">Our services</div>
+      <div class="section-tag reveal">Our services</div>
       <h2 class="section-title">BUILT TO GROW<br>WITH YOUR BUSINESS</h2>
       <p class="section-sub">Start with lead automation and layer on more as you scale. Every tier includes a 30-day free trial.</p>
       <div class="tiers-grid">
-        <div class="tier-card featured">
+        <div class="tier-card featured reveal">
           <span class="tier-badge badge-active">✦ Available Now</span>
           <div class="tier-name">Tier 1</div>
           <p class="tier-desc">Lead Automation & Filtering. The foundation — AI-powered lead scoring, instant agent alerts, and a live CRM. Everything you need to stop losing deals.</p>
@@ -296,7 +474,7 @@
           </ul>
           <a href="https://calendly.com/clairoautomation/30min" target="_blank" class="tier-cta tier-cta-active">Start Free Trial →</a>
         </div>
-        <div class="tier-card">
+        <div class="tier-card reveal">
           <span class="tier-badge badge-dev">In Development</span>
           <div class="tier-name">Tier 2</div>
           <p class="tier-desc">Lead Automation + Social Media Marketing. Everything in Tier 1, plus AI-powered social media management to keep your pipeline full.</p>
@@ -310,7 +488,7 @@
           </ul>
           <a class="tier-cta tier-cta-soon">Coming Soon</a>
         </div>
-        <div class="tier-card">
+        <div class="tier-card reveal">
           <span class="tier-badge badge-dev">In Development</span>
           <div class="tier-name">Tier 3</div>
           <p class="tier-desc">Full Stack Growth. Lead automation, social media marketing, and SEO optimization working together to dominate your market.</p>
@@ -337,16 +515,16 @@
 
   <!-- WHY CLAIRO -->
   <section>
-    <div class="section-tag">Why Clairo</div>
+    <div class="section-tag reveal">Why Clairo</div>
     <h2 class="section-title">YOUR AGENTS CLOSE DEALS.<br>WE HANDLE THE REST.</h2>
     <p class="section-sub">Built specifically for independent real estate brokerages that are tired of losing leads to slow response times.</p>
     <div class="why-grid">
-      <div class="why-card"><div class="why-icon">⚡</div><h3>60-Second Response</h3><p>HOT leads get an SMS to your agent within 60 seconds of submission. Speed wins deals.</p></div>
-      <div class="why-card"><div class="why-icon">🧠</div><h3>AI That Understands Context</h3><p>Our AI reads the full message, validates the budget against real market data, and makes a smart decision — not a rigid rule.</p></div>
-      <div class="why-card"><div class="why-icon">🗂</div><h3>Zero Manual Work</h3><p>Every lead is scored, logged, and organized automatically. Your team wakes up to a prioritized pipeline.</p></div>
-      <div class="why-card"><div class="why-icon">🔒</div><h3>Junk Filtered Out</h3><p>Spam, test submissions, and unrealistic leads never reach your agents. Only real opportunities get through.</p></div>
-      <div class="why-card"><div class="why-icon">📈</div><h3>Scales With You</h3><p>Whether you have 3 agents or 30, Clairo routes leads to the right person every time without extra work from you.</p></div>
-      <div class="why-card"><div class="why-icon">🤝</div><h3>Built for Brokers</h3><p>We work with independent brokerages in Houston. We know your market, your challenges, and your goals.</p></div>
+      <div class="why-card reveal"><div class="why-icon">⚡</div><h3>60-Second Response</h3><p>HOT leads get an SMS to your agent within 60 seconds of submission. Speed wins deals.</p></div>
+      <div class="why-card reveal"><div class="why-icon">🧠</div><h3>AI That Understands Context</h3><p>Our AI reads the full message, validates the budget against real market data, and makes a smart decision — not a rigid rule.</p></div>
+      <div class="why-card reveal"><div class="why-icon">🗂</div><h3>Zero Manual Work</h3><p>Every lead is scored, logged, and organized automatically. Your team wakes up to a prioritized pipeline.</p></div>
+      <div class="why-card reveal"><div class="why-icon">🔒</div><h3>Junk Filtered Out</h3><p>Spam, test submissions, and unrealistic leads never reach your agents. Only real opportunities get through.</p></div>
+      <div class="why-card reveal"><div class="why-icon">📈</div><h3>Scales With You</h3><p>Whether you have 3 agents or 30, Clairo routes leads to the right person every time without extra work from you.</p></div>
+      <div class="why-card reveal"><div class="why-icon">🤝</div><h3>Built for Brokers</h3><p>We work with independent brokerages in Houston. We know your market, your challenges, and your goals.</p></div>
     </div>
   </section>
 
@@ -354,16 +532,16 @@
   <div class="faq-section">
     <div class="faq-inner">
       <div class="faq-header">
-        <div class="section-tag">Common Questions</div>
+        <div class="section-tag reveal">Common Questions</div>
         <h2 class="section-title">BEFORE YOU BOOK,<br>HERE ARE THE ANSWERS</h2>
       </div>
       <div class="faq-grid">
-        <div class="faq-item"><div class="faq-q">Do I need to change my current website?</div><div class="faq-a">No. We embed a contact form directly onto your existing website. No redesign needed. Setup takes 3–5 business days.</div></div>
-        <div class="faq-item"><div class="faq-q">How long does setup take?</div><div class="faq-a">Usually 3–5 business days from your onboarding call to your first live lead being scored and routed to your agents.</div></div>
-        <div class="faq-item"><div class="faq-q">What if I already have a CRM?</div><div class="faq-a">We can integrate with most existing systems. If you use Follow Up Boss or kvCORE, ask us on the call and we'll tell you exactly what's possible.</div></div>
-        <div class="faq-item"><div class="faq-q">Is there a contract or commitment?</div><div class="faq-a">No contracts. Your 30-day free trial requires no commitment. After that you can cancel anytime — no questions asked.</div></div>
-        <div class="faq-item"><div class="faq-q">How does the AI know if a lead is HOT?</div><div class="faq-a">Claude AI reads the lead's message, validates their budget against live Houston market data, and weighs their timeline — the same way an experienced agent would.</div></div>
-        <div class="faq-item"><div class="faq-q">What happens to leads that aren't HOT?</div><div class="faq-a">WARM leads are logged in your CRM for follow-up. COLD leads are filtered out. Nothing falls through the cracks — your agents just focus on what matters.</div></div>
+        <div class="faq-item reveal"><div class="faq-q">Do I need to change my current website?</div><div class="faq-a">No. We embed a contact form directly onto your existing website. No redesign needed. Setup takes 3–5 business days.</div></div>
+        <div class="faq-item reveal"><div class="faq-q">How long does setup take?</div><div class="faq-a">Usually 3–5 business days from your onboarding call to your first live lead being scored and routed to your agents.</div></div>
+        <div class="faq-item reveal"><div class="faq-q">What if I already have a CRM?</div><div class="faq-a">We can integrate with most existing systems. If you use Follow Up Boss or kvCORE, ask us on the call and we'll tell you exactly what's possible.</div></div>
+        <div class="faq-item reveal"><div class="faq-q">Is there a contract or commitment?</div><div class="faq-a">No contracts. Your 30-day free trial requires no commitment. After that you can cancel anytime — no questions asked.</div></div>
+        <div class="faq-item reveal"><div class="faq-q">How does the AI know if a lead is HOT?</div><div class="faq-a">Claude AI reads the lead's message, validates their budget against live Houston market data, and weighs their timeline — the same way an experienced agent would.</div></div>
+        <div class="faq-item reveal"><div class="faq-q">What happens to leads that aren't HOT?</div><div class="faq-a">WARM leads are logged in your CRM for follow-up. COLD leads are filtered out. Nothing falls through the cracks — your agents just focus on what matters.</div></div>
       </div>
     </div>
   </div>
@@ -398,7 +576,7 @@
       <div class="footer-col">
         <span class="footer-col-title">Contact</span>
         <a href="contact.html">Get In Touch</a>
-        <a href="mailto:clairoautomation@gmail.com">clairoautomation@gmail.com</a>
+        <a href="mailto:clairo@gmail.com">clairo@gmail.com</a>
         <a href="https://calendly.com/clairoautomation/30min" target="_blank">Book a Call</a>
       </div>
       <div class="footer-col">
@@ -459,25 +637,77 @@
     </div>
   </div>
 
+  
   <script>
-    function toggleMobileMenu() { document.getElementById("mobileMenu").classList.toggle("open"); }
-    function togglePanel() {
-      const panel = document.getElementById("floatPanel");
-      const msgIcon = document.getElementById("float-icon-msg");
-      const xIcon = document.getElementById("float-icon-x");
-      const isOpen = panel.classList.contains("open");
-      panel.classList.toggle("open");
-      msgIcon.style.display = isOpen ? "block" : "none";
-      xIcon.style.display = isOpen ? "none" : "block";
+    // ── Scroll reveal ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Nav scroll effect ──
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }, { passive: true });
+
+    // ── Mobile menu ──
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
     }
-    document.getElementById("floatForm").addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const form = e.target;
-      try {
-        const res = await fetch(form.action, { method: "POST", body: new FormData(form), headers: { "Accept": "application/json" } });
-        if (res.ok) { form.style.display = "none"; document.getElementById("floatSuccess").style.display = "block"; }
-      } catch(err) { alert("Something went wrong. Please email us at clairoautomation@gmail.com"); }
+
+    // ── Float widget ──
+    function togglePanel() {
+      const panel = document.getElementById('floatPanel');
+      const msgIcon = document.getElementById('float-icon-msg');
+      const xIcon = document.getElementById('float-icon-x');
+      const isOpen = panel.classList.contains('open');
+      panel.classList.toggle('open');
+      msgIcon.style.display = isOpen ? 'block' : 'none';
+      xIcon.style.display = isOpen ? 'none' : 'block';
+    }
+
+    // ── Formspree submit ──
+    const floatForm = document.getElementById('floatForm');
+    if (floatForm) {
+      floatForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('button[type="submit"]');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        try {
+          const res = await fetch(this.action, {
+            method: 'POST', body: new FormData(this),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            this.style.display = 'none';
+            document.getElementById('floatSuccess').style.display = 'block';
+          } else {
+            btn.textContent = 'Try again';
+            btn.disabled = false;
+          }
+        } catch {
+          btn.textContent = 'Try again';
+          btn.disabled = false;
+        }
+      });
+    }
+
+    // ── Smooth anchor scroll ──
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
     });
   </script>
+
 </body>
 </html>
