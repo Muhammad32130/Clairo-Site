@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Clairo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --dark: #111111;
+      --gray: #1a1a1a;
+      --mid: #2a2a2a;
+      --border: #222222;
+      --orange: #f97316;
+      --orange-dim: #c05a0d;
+      --white: #f5f5f5;
+      --muted: #888888;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 60px;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 3px; color: var(--white); text-decoration: none; }
+    .logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { background: var(--orange); color: var(--black) !important; padding: 10px 22px; border-radius: 6px; font-weight: 600 !important; }
+    .nav-cta:hover { background: var(--orange-dim) !important; color: var(--white) !important; }
+
+    .page-hero {
+      padding: 160px 60px 80px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+    .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(56px, 8vw, 96px); line-height: 0.95; letter-spacing: 2px; margin-bottom: 20px; }
+    .page-hero h1 span { color: var(--orange); }
+    .page-hero p { font-size: 17px; color: var(--muted); max-width: 500px; margin: 0 auto; line-height: 1.7; font-weight: 300; }
+
+    .tiers-section { padding: 80px 60px; max-width: 1200px; margin: 0 auto; }
+
+    .tiers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+
+    .tier-card {
+      background: var(--dark); border: 1px solid var(--border); border-radius: 16px;
+      padding: 48px 40px; position: relative; transition: border-color 0.2s, transform 0.2s; overflow: hidden;
+    }
+    .tier-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--border); transition: background 0.2s; }
+    .tier-card:hover { border-color: var(--orange); transform: translateY(-4px); }
+    .tier-card:hover::before { background: var(--orange); }
+    .tier-card.featured { border-color: var(--orange); background: rgba(249,115,22,0.04); }
+    .tier-card.featured::before { background: var(--orange); }
+
+    .tier-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 28px; }
+    .badge-active { background: rgba(249,115,22,0.15); color: var(--orange); border: 1px solid rgba(249,115,22,0.3); }
+    .badge-dev { background: rgba(136,136,136,0.1); color: var(--muted); border: 1px solid var(--border); }
+
+    .tier-number { font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 3px; color: var(--muted); margin-bottom: 8px; }
+    .tier-name { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 1px; margin-bottom: 6px; }
+    .tier-tagline { font-size: 13px; color: var(--orange); font-weight: 600; letter-spacing: 0.5px; margin-bottom: 16px; }
+    .tier-desc { font-size: 14px; color: var(--muted); margin-bottom: 36px; line-height: 1.7; font-weight: 300; }
+
+    .tier-features { list-style: none; margin-bottom: 40px; }
+    .tier-features li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--white); padding: 12px 0; border-bottom: 1px solid var(--border); font-weight: 300; }
+    .tier-features li:last-child { border-bottom: none; }
+    .tier-features li::before { content: '→'; color: var(--orange); font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+    .tier-features li.coming { color: var(--muted); }
+    .tier-features li.coming::before { color: var(--mid); content: '○'; }
+
+    .tier-cta { display: block; text-align: center; padding: 16px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; transition: all 0.2s; letter-spacing: 0.5px; }
+    .tier-cta-active { background: var(--orange); color: var(--black); }
+    .tier-cta-active:hover { background: var(--orange-dim); transform: translateY(-1px); }
+    .tier-cta-soon { background: var(--gray); color: var(--muted); cursor: not-allowed; }
+
+    /* COMPARISON TABLE */
+    .compare-section { padding: 80px 60px; border-top: 1px solid var(--border); background: var(--dark); }
+    .compare-inner { max-width: 900px; margin: 0 auto; }
+    .section-tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 4vw, 56px); line-height: 1; letter-spacing: 1px; margin-bottom: 48px; }
+
+    .compare-table { width: 100%; border-collapse: collapse; }
+    .compare-table th { padding: 16px 20px; text-align: left; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-bottom: 2px solid var(--border); color: var(--muted); }
+    .compare-table th:first-child { color: var(--white); }
+    .compare-table td { padding: 16px 20px; font-size: 14px; border-bottom: 1px solid var(--border); color: var(--white); font-weight: 300; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: rgba(249,115,22,0.03); }
+    .check { color: var(--orange); font-weight: 700; }
+    .cross { color: var(--muted); }
+
+    /* TRIAL */
+    .trial-section { padding: 80px 60px; max-width: 1200px; margin: 0 auto; }
+    .trial-banner {
+      background: linear-gradient(135deg, rgba(249,115,22,0.12), rgba(249,115,22,0.04));
+      border: 1px solid rgba(249,115,22,0.25); border-radius: 16px;
+      padding: 60px; text-align: center;
+    }
+    .trial-banner h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5vw, 64px); letter-spacing: 2px; margin-bottom: 16px; }
+    .trial-banner h2 span { color: var(--orange); }
+    .trial-banner p { font-size: 16px; color: var(--muted); margin-bottom: 36px; font-weight: 300; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .btn-primary { background: var(--orange); color: var(--black); padding: 16px 40px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: all 0.2s; display: inline-block; }
+    .btn-primary:hover { background: var(--orange-dim); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(249,115,22,0.3); }
+
+    footer { border-top: 1px solid var(--border); padding: 40px 60px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer p { font-size: 13px; color: var(--muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--orange); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .page-hero { padding: 120px 24px 60px; }
+      .tiers-section { padding: 60px 24px; }
+      .compare-section { padding: 60px 24px; }
+      .trial-section { padding: 60px 24px; }
+      .trial-banner { padding: 40px 28px; }
+      footer { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">CLAI<span>R</span>O</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pricing.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://calendly.com/clairoautomation/30min" target="_blank" class="nav-cta">Book Free Call</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-tag">Our Services</div>
+    <h1>EVERYTHING YOUR<br>BROKERAGE <span>NEEDS</span></h1>
+    <p>Start with AI lead automation and layer on more as your business grows. Every tier includes a 30-day free trial.</p>
+  </div>
+
+  <div class="tiers-section">
+    <div class="tiers-grid">
+      <div class="tier-card featured">
+        <span class="tier-badge badge-active">✦ Available Now</span>
+        <div class="tier-number">TIER 01</div>
+        <div class="tier-name">Lead Automation</div>
+        <div class="tier-tagline">Lead Filtering & Agent Alerts</div>
+        <p class="tier-desc">The foundation of a high-performance brokerage. AI scores every lead the second they submit and alerts your agents instantly. No more chasing cold leads.</p>
+        <ul class="tier-features">
+          <li>AI lead scoring — HOT, WARM, COLD</li>
+          <li>Instant SMS alerts to agents</li>
+          <li>Live CRM dashboard in Airtable</li>
+          <li>Market-aware budget validation</li>
+          <li>Spam & junk lead filtering</li>
+          <li>Multi-agent support</li>
+          <li>Background processing — success page loads instantly</li>
+          <li>30-day free trial included</li>
+        </ul>
+        <a href="https://calendly.com/clairoautomation/30min" target="_blank" class="tier-cta tier-cta-active">Book Free Consultation →</a>
+      </div>
+
+      <div class="tier-card">
+        <span class="tier-badge badge-dev">In Development</span>
+        <div class="tier-number">TIER 02</div>
+        <div class="tier-name">Growth Pack</div>
+        <div class="tier-tagline">Lead Automation + Social Media Marketing</div>
+        <p class="tier-desc">Everything in Tier 1 plus AI-powered social media management to keep your pipeline full. Post consistently without lifting a finger.</p>
+        <ul class="tier-features">
+          <li>Everything in Tier 1</li>
+          <li class="coming">AI social media content creation</li>
+          <li class="coming">Automated posting to Instagram & Facebook</li>
+          <li class="coming">Lead generation from social channels</li>
+          <li class="coming">Monthly performance reporting</li>
+          <li class="coming">30-day free trial included</li>
+        </ul>
+        <a class="tier-cta tier-cta-soon">Coming Soon</a>
+      </div>
+
+      <div class="tier-card">
+        <span class="tier-badge badge-dev">In Development</span>
+        <div class="tier-number">TIER 03</div>
+        <div class="tier-name">Full Stack</div>
+        <div class="tier-tagline">Automation + Marketing + SEO</div>
+        <p class="tier-desc">The complete growth engine. Lead automation, social media marketing, and SEO optimization working together to dominate your local market.</p>
+        <ul class="tier-features">
+          <li>Everything in Tier 2</li>
+          <li class="coming">Local SEO optimization</li>
+          <li class="coming">Google Business Profile management</li>
+          <li class="coming">Keyword & content strategy</li>
+          <li class="coming">Competitor analysis</li>
+          <li class="coming">Monthly growth reporting</li>
+          <li class="coming">30-day free trial included</li>
+        </ul>
+        <a class="tier-cta tier-cta-soon">Coming Soon</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARISON TABLE -->
+  <div class="compare-section">
+    <div class="compare-inner">
+      <div class="section-tag">Feature Breakdown</div>
+      <div class="section-title">WHAT'S INCLUDED<br>IN EACH TIER</div>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Tier 1</th>
+            <th>Tier 2</th>
+            <th>Tier 3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>AI Lead Scoring</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Instant SMS Agent Alerts</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Live CRM Dashboard</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Junk Lead Filtering</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Multi-Agent Support</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>30-Day Free Trial</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Social Media Content</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Automated Posting</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Social Lead Generation</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Local SEO Optimization</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td></tr>
+          <tr><td>Google Business Management</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td></tr>
+          <tr><td>Keyword & Content Strategy</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRIAL -->
+  <div class="trial-section">
+    <div class="trial-banner">
+      <h2>30 DAYS FREE.<br><span>NO COMMITMENT.</span></h2>
+      <p>Try Clairo free for 30 days. No setup fees, no contracts, no risk. If it doesn't work for your brokerage, walk away — no questions asked.</p>
+      <a href="https://calendly.com/clairoautomation/30min" target="_blank" class="btn-primary">Book Your Free 15-Min Call →</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Clairo. Built for Houston real estate brokerages.</p>
+    <div class="footer-links">
+      <a href="pricing.html">Services</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </div>
+  </footer>
+
+
+  <!-- FLOATING CONTACT WIDGET -->
+  <style>
+    .float-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 999;
+      width: 56px;
+      height: 56px;
+      background: #f97316;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(249,115,22,0.4);
+      transition: all 0.2s;
+      border: none;
+    }
+    .float-btn:hover { background: #c05a0d; transform: scale(1.08); }
+    .float-btn svg { width: 24px; height: 24px; }
+
+    .float-panel {
+      position: fixed;
+      bottom: 100px;
+      right: 32px;
+      z-index: 998;
+      width: 360px;
+      background: #111111;
+      border: 1px solid #222222;
+      border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: 0 16px 64px rgba(0,0,0,0.6);
+      display: none;
+      animation: slideUp 0.25s ease;
+    }
+
+    .float-panel.open { display: block; }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .float-panel h3 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 26px;
+      letter-spacing: 1px;
+      color: #f5f5f5;
+      margin-bottom: 4px;
+    }
+
+    .float-panel h3 span { color: #f97316; }
+
+    .float-panel p {
+      font-size: 13px;
+      color: #888888;
+      margin-bottom: 20px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .float-panel input,
+    .float-panel textarea {
+      width: 100%;
+      background: #1a1a1a;
+      border: 1px solid #222222;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 14px;
+      color: #f5f5f5;
+      font-family: "DM Sans", sans-serif;
+      margin-bottom: 12px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .float-panel input:focus,
+    .float-panel textarea:focus { border-color: #f97316; }
+
+    .float-panel textarea { resize: vertical; min-height: 90px; }
+
+    .float-panel button[type="submit"] {
+      width: 100%;
+      background: #f97316;
+      color: #0a0a0a;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: "DM Sans", sans-serif;
+      transition: background 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .float-panel button[type="submit"]:hover { background: #c05a0d; }
+
+    .float-success {
+      text-align: center;
+      padding: 16px 0;
+      display: none;
+    }
+
+    .float-success .check {
+      width: 52px; height: 52px;
+      background: #dcfce7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .float-success h4 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 22px;
+      letter-spacing: 1px;
+      color: #f5f5f5;
+      margin-bottom: 6px;
+    }
+
+    .float-success p { font-size: 13px; color: #888888; font-weight: 300; }
+
+    .close-btn {
+      position: absolute;
+      top: 16px; right: 20px;
+      background: none;
+      border: none;
+      color: #888888;
+      font-size: 20px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    .close-btn:hover { color: #f5f5f5; }
+
+    @media (max-width: 480px) {
+      .float-panel { width: calc(100vw - 32px); right: 16px; }
+      .float-btn { right: 16px; bottom: 24px; }
+    }
+  </style>
+
+  <button class="float-btn" onclick="togglePanel()" aria-label="Contact us">
+    <svg id="float-icon-msg" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <svg id="float-icon-x" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2.5" stroke-linecap="round" style="display:none">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  <div class="float-panel" id="floatPanel">
+    <button class="close-btn" onclick="togglePanel()">✕</button>
+    <h3>SEND US A <span>MESSAGE</span></h3>
+    <p>Not ready to book a call? No problem — send us a message and we will get back to you within 24 hours.</p>
+
+    <form id="floatForm" action="https://formspree.io/f/xbdqvodp" method="POST">
+      <input type="text" name="name" placeholder="Your name" required />
+      <input type="email" name="email" placeholder="Your email" required />
+      <input type="text" name="business" placeholder="Your business (optional)" />
+      <textarea name="message" placeholder="What would you like to know?" required></textarea>
+      <button type="submit">Send Message →</button>
+    </form>
+
+    <div class="float-success" id="floatSuccess">
+      <div class="check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="26" height="26">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h4>MESSAGE SENT!</h4>
+      <p>We will get back to you within 24 hours.</p>
+    </div>
+  </div>
+
+  <script>
+    function togglePanel() {
+      const panel = document.getElementById("floatPanel");
+      const msgIcon = document.getElementById("float-icon-msg");
+      const xIcon = document.getElementById("float-icon-x");
+      const isOpen = panel.classList.contains("open");
+      panel.classList.toggle("open");
+      msgIcon.style.display = isOpen ? "block" : "none";
+      xIcon.style.display = isOpen ? "none" : "block";
+    }
+
+    document.getElementById("floatForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: data,
+          headers: { "Accept": "application/json" }
+        });
+        if (res.ok) {
+          form.style.display = "none";
+          document.getElementById("floatSuccess").style.display = "block";
+        }
+      } catch(err) {
+        alert("Something went wrong. Please email us at clairo@gmail.com");
+      }
+    });
+  </script>
+  <!-- END FLOATING WIDGET -->
+
+</body>
+</html>

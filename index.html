@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clairo — AI Lead Automation for Real Estate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --dark: #111111;
+      --gray: #1a1a1a;
+      --mid: #2a2a2a;
+      --border: #222222;
+      --orange: #f97316;
+      --orange-dim: #c05a0d;
+      --white: #f5f5f5;
+      --muted: #888888;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 60px;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 3px;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--orange); }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--orange);
+      color: var(--black) !important;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--orange-dim) !important; color: var(--white) !important; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(249,115,22,0.1);
+      border: 1px solid rgba(249,115,22,0.3);
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(64px, 10vw, 120px);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero h1 span { color: var(--orange); }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+      font-weight: 300;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: var(--black);
+      padding: 16px 36px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--orange-dim);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(249,115,22,0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      padding: 16px 36px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* STATS */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--dark);
+    }
+
+    .stat {
+      flex: 1;
+      max-width: 260px;
+      text-align: center;
+      padding: 48px 40px;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat:last-child { border-right: none; }
+
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      color: var(--orange);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 100px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* HOW IT WORKS */
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2px;
+      margin-top: 64px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .how-card {
+      background: var(--dark);
+      padding: 40px 32px;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .how-card:hover { background: var(--gray); }
+
+    .how-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 64px;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 16px;
+      transition: color 0.2s;
+    }
+
+    .how-card:hover .how-number { color: var(--orange); }
+
+    .how-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+
+    .how-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* SERVICES / TIERS */
+    .tiers-wrap {
+      padding: 100px 60px;
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tiers-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 64px;
+    }
+
+    .tier-card {
+      background: var(--black);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 36px;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+      overflow: hidden;
+    }
+
+    .tier-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--border);
+      transition: background 0.2s;
+    }
+
+    .tier-card:hover { border-color: var(--orange); transform: translateY(-4px); }
+    .tier-card:hover::before { background: var(--orange); }
+
+    .tier-card.featured {
+      border-color: var(--orange);
+      background: rgba(249,115,22,0.04);
+    }
+
+    .tier-card.featured::before { background: var(--orange); }
+
+    .tier-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+
+    .badge-active {
+      background: rgba(249,115,22,0.15);
+      color: var(--orange);
+      border: 1px solid rgba(249,115,22,0.3);
+    }
+
+    .badge-dev {
+      background: rgba(136,136,136,0.1);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .tier-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .tier-desc {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .tier-features {
+      list-style: none;
+      margin-bottom: 36px;
+    }
+
+    .tier-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--white);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-weight: 300;
+    }
+
+    .tier-features li:last-child { border-bottom: none; }
+
+    .tier-features li::before {
+      content: '→';
+      color: var(--orange);
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .tier-features li.coming { color: var(--muted); }
+    .tier-features li.coming::before { color: var(--mid); }
+
+    .tier-cta {
+      display: block;
+      text-align: center;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .tier-cta-active {
+      background: var(--orange);
+      color: var(--black);
+    }
+
+    .tier-cta-active:hover {
+      background: var(--orange-dim);
+      transform: translateY(-1px);
+    }
+
+    .tier-cta-soon {
+      background: var(--gray);
+      color: var(--muted);
+      cursor: not-allowed;
+    }
+
+    /* TRIAL BANNER */
+    .trial-banner {
+      background: linear-gradient(135deg, rgba(249,115,22,0.12), rgba(249,115,22,0.04));
+      border: 1px solid rgba(249,115,22,0.25);
+      border-radius: 16px;
+      padding: 48px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      margin-top: 64px;
+      flex-wrap: wrap;
+    }
+
+    .trial-banner h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 40px;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .trial-banner h3 span { color: var(--orange); }
+
+    .trial-banner p {
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* WHY CLAIRO */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 64px;
+    }
+
+    .why-card {
+      background: var(--dark);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 28px;
+      transition: border-color 0.2s;
+    }
+
+    .why-card:hover { border-color: var(--orange); }
+
+    .why-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .why-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .why-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center;
+      padding: 120px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 7vw, 88px);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+    }
+
+    .cta-section h2 span { color: var(--orange); }
+
+    .cta-section p {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--orange); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      section { padding: 72px 24px; }
+      .tiers-wrap { padding: 72px 24px; }
+      .stats { flex-wrap: wrap; }
+      .stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .trial-banner { padding: 32px 28px; }
+      footer { padding: 32px 24px; }
+      .cta-section { padding: 80px 24px; }
+    }
+  </style>
+</head>
+<body>
+<!-- <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pricing.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://calendly.com/clairoautomation/30min" target="_blank" class="nav-cta">Book Free Call</a></li>
+    </ul> -->
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="logo">CLAI<span>R</span>O</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pricing.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://calendly.com/clairoautomation/30min" target="_blank" class="nav-cta">Book Free Call</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">Now live for real estate brokerages</div>
+    <h1>STOP LOSING<br>LEADS TO <span>SLOW</span><br>FOLLOW-UP</h1>
+    <p>Clairo's AI scores every lead the second they submit — hot, warm, or cold — and alerts your agents instantly. No manual work. No missed deals.</p>
+    <div class="hero-btns">
+      <a href="https://calendly.com/clairoautomation/30min" target="_blank" class="btn-primary">Book Free 15-Min Call</a>
+      <a href="pricing.html" class="btn-secondary">See What We Offer</a>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number">60s</div>
+      <div class="stat-label">Average agent alert time</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">24/7</div>
+      <div class="stat-label">System runs without you</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">30</div>
+      <div class="stat-label">Day free trial, no commitment</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">0</div>
+      <div class="stat-label">Manual work required</div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="section-tag">How it works</div>
+    <h2 class="section-title">FROM LEAD TO AGENT<br>IN UNDER A MINUTE</h2>
+    <p class="section-sub">Every lead that fills out your form gets scored, logged, and routed automatically. Your agents only touch leads worth their time.</p>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-number">01</div>
+        <h3>Lead submits form</h3>
+        <p>A potential buyer or seller fills out the contact form on your brokerage website.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-number">02</div>
+        <h3>AI scores instantly</h3>
+        <p>Claude AI analyzes their message, budget, and timeline against live Houston market data and scores them HOT, WARM, or COLD.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-number">03</div>
+        <h3>Agent gets alerted</h3>
+        <p>HOT leads trigger an instant SMS to your agent with the lead's name, phone, budget, and timeline. Call them before the competition does.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-number">04</div>
+        <h3>Everything logged</h3>
+        <p>Every lead is saved to your live CRM dashboard automatically — scored, timestamped, and organized. Review your full pipeline anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES / TIERS -->
+  <div class="tiers-wrap">
+    <div class="tiers-inner">
+      <div class="section-tag">Our services</div>
+      <h2 class="section-title">BUILT TO GROW<br>WITH YOUR BUSINESS</h2>
+      <p class="section-sub">Start with lead automation and layer on more as you scale. Every tier includes a 30-day free trial.</p>
+
+      <div class="tiers-grid">
+        <!-- Tier 1 -->
+        <div class="tier-card featured">
+          <span class="tier-badge badge-active">✦ Available Now</span>
+          <div class="tier-name">Tier 1</div>
+          <p class="tier-desc">Lead Automation & Filtering. The foundation — AI-powered lead scoring, instant agent alerts, and a live CRM. Everything you need to stop losing deals.</p>
+          <ul class="tier-features">
+            <li>AI lead scoring — HOT, WARM, COLD</li>
+            <li>Instant SMS alerts to agents</li>
+            <li>Live lead CRM dashboard</li>
+            <li>Market-aware budget validation</li>
+            <li>Spam & junk lead filtering</li>
+            <li>30-day free trial included</li>
+          </ul>
+          <a href="https://calendly.com/clairoautomation/30min" target="_blank" class="tier-cta tier-cta-active">Book Free Consultation</a>
+        </div>
+
+        <!-- Tier 2 -->
+        <div class="tier-card">
+          <span class="tier-badge badge-dev">In Development</span>
+          <div class="tier-name">Tier 2</div>
+          <p class="tier-desc">Lead Automation + Social Media Marketing. Everything in Tier 1, plus AI-powered social media management to keep your pipeline full.</p>
+          <ul class="tier-features">
+            <li>Everything in Tier 1</li>
+            <li class="coming">AI social media content creation</li>
+            <li class="coming">Automated posting schedule</li>
+            <li class="coming">Lead generation from social</li>
+            <li class="coming">Performance reporting</li>
+            <li class="coming">30-day free trial included</li>
+          </ul>
+          <a class="tier-cta tier-cta-soon">Coming Soon</a>
+        </div>
+
+        <!-- Tier 3 -->
+        <div class="tier-card">
+          <span class="tier-badge badge-dev">In Development</span>
+          <div class="tier-name">Tier 3</div>
+          <p class="tier-desc">Full Stack Growth. Lead automation, social media marketing, and SEO optimization working together to dominate your market.</p>
+          <ul class="tier-features">
+            <li>Everything in Tier 2</li>
+            <li class="coming">Local SEO optimization</li>
+            <li class="coming">Google Business management</li>
+            <li class="coming">Content & keyword strategy</li>
+            <li class="coming">Monthly growth reporting</li>
+            <li class="coming">30-day free trial included</li>
+          </ul>
+          <a class="tier-cta tier-cta-soon">Coming Soon</a>
+        </div>
+      </div>
+
+      <!-- Trial Banner -->
+      <div class="trial-banner">
+        <div>
+          <h3>START FREE.<br><span>30 DAYS, NO COMMITMENT.</span></h3>
+          <p>Try Clairo free for 30 days. No setup fees, no contracts. If it doesn't work for you, walk away.</p>
+        </div>
+        <a href="https://calendly.com/clairoautomation/30min" target="_blank" class="btn-primary">Book Your Free Call</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY CLAIRO -->
+  <section>
+    <div class="section-tag">Why Clairo</div>
+    <h2 class="section-title">YOUR AGENTS CLOSE DEALS.<br>WE HANDLE THE REST.</h2>
+    <p class="section-sub">Built specifically for independent real estate brokerages that are tired of losing leads to slow response times.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <h3>60-Second Response</h3>
+        <p>HOT leads get an SMS to your agent within 60 seconds of submission. Speed wins deals.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🧠</div>
+        <h3>AI That Understands Context</h3>
+        <p>Our AI reads the full message, validates the budget against real market data, and makes a smart decision — not a rigid rule.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🗂</div>
+        <h3>Zero Manual Work</h3>
+        <p>Every lead is scored, logged, and organized automatically. Your team wakes up to a prioritized pipeline.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔒</div>
+        <h3>Junk Filtered Out</h3>
+        <p>Spam, test submissions, and unrealistic leads never reach your agents. Only real opportunities get through.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📈</div>
+        <h3>Scales With You</h3>
+        <p>Whether you have 3 agents or 30, Clairo routes leads to the right person every time without extra work from you.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <h3>Built for Brokers</h3>
+        <p>We work with independent brokerages in Houston. We know your market, your challenges, and your goals.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <div class="cta-section">
+    <h2>READY TO STOP<br>LOSING <span>LEADS?</span></h2>
+    <p>Book a free 15-minute call. We'll show you exactly how Clairo works for your brokerage.</p>
+    <a href="https://calendly.com/clairoautomation/30min" target="_blank" class="btn-primary">Book Free 15-Min Call →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Clairo. Built for Houston real estate brokerages.</p>
+    <div class="footer-links">
+      <a href="pricing.html">Services</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </div>
+  </footer>
+
+
+  <!-- FLOATING CONTACT WIDGET -->
+  <style>
+    .float-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 999;
+      width: 56px;
+      height: 56px;
+      background: #f97316;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(249,115,22,0.4);
+      transition: all 0.2s;
+      border: none;
+    }
+    .float-btn:hover { background: #c05a0d; transform: scale(1.08); }
+    .float-btn svg { width: 24px; height: 24px; }
+
+    .float-panel {
+      position: fixed;
+      bottom: 100px;
+      right: 32px;
+      z-index: 998;
+      width: 360px;
+      background: #111111;
+      border: 1px solid #222222;
+      border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: 0 16px 64px rgba(0,0,0,0.6);
+      display: none;
+      animation: slideUp 0.25s ease;
+    }
+
+    .float-panel.open { display: block; }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .float-panel h3 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 26px;
+      letter-spacing: 1px;
+      color: #f5f5f5;
+      margin-bottom: 4px;
+    }
+
+    .float-panel h3 span { color: #f97316; }
+
+    .float-panel p {
+      font-size: 13px;
+      color: #888888;
+      margin-bottom: 20px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .float-panel input,
+    .float-panel textarea {
+      width: 100%;
+      background: #1a1a1a;
+      border: 1px solid #222222;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 14px;
+      color: #f5f5f5;
+      font-family: "DM Sans", sans-serif;
+      margin-bottom: 12px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .float-panel input:focus,
+    .float-panel textarea:focus { border-color: #f97316; }
+
+    .float-panel textarea { resize: vertical; min-height: 90px; }
+
+    .float-panel button[type="submit"] {
+      width: 100%;
+      background: #f97316;
+      color: #0a0a0a;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: "DM Sans", sans-serif;
+      transition: background 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .float-panel button[type="submit"]:hover { background: #c05a0d; }
+
+    .float-success {
+      text-align: center;
+      padding: 16px 0;
+      display: none;
+    }
+
+    .float-success .check {
+      width: 52px; height: 52px;
+      background: #dcfce7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .float-success h4 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 22px;
+      letter-spacing: 1px;
+      color: #f5f5f5;
+      margin-bottom: 6px;
+    }
+
+    .float-success p { font-size: 13px; color: #888888; font-weight: 300; }
+
+    .close-btn {
+      position: absolute;
+      top: 16px; right: 20px;
+      background: none;
+      border: none;
+      color: #888888;
+      font-size: 20px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    .close-btn:hover { color: #f5f5f5; }
+
+    @media (max-width: 480px) {
+      .float-panel { width: calc(100vw - 32px); right: 16px; }
+      .float-btn { right: 16px; bottom: 24px; }
+    }
+  </style>
+
+  <button class="float-btn" onclick="togglePanel()" aria-label="Contact us">
+    <svg id="float-icon-msg" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <svg id="float-icon-x" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2.5" stroke-linecap="round" style="display:none">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  <div class="float-panel" id="floatPanel">
+    <button class="close-btn" onclick="togglePanel()">✕</button>
+    <h3>SEND US A <span>MESSAGE</span></h3>
+    <p>Not ready to book a call? No problem — send us a message and we will get back to you within 24 hours.</p>
+
+    <form id="floatForm" action="https://formspree.io/f/xbdqvodp" method="POST">
+      <input type="text" name="name" placeholder="Your name" required />
+      <input type="email" name="email" placeholder="Your email" required />
+      <input type="text" name="business" placeholder="Your business (optional)" />
+      <textarea name="message" placeholder="What would you like to know?" required></textarea>
+      <button type="submit">Send Message →</button>
+    </form>
+
+    <div class="float-success" id="floatSuccess">
+      <div class="check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="26" height="26">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h4>MESSAGE SENT!</h4>
+      <p>We will get back to you within 24 hours.</p>
+    </div>
+  </div>
+
+  <script>
+    function togglePanel() {
+      const panel = document.getElementById("floatPanel");
+      const msgIcon = document.getElementById("float-icon-msg");
+      const xIcon = document.getElementById("float-icon-x");
+      const isOpen = panel.classList.contains("open");
+      panel.classList.toggle("open");
+      msgIcon.style.display = isOpen ? "block" : "none";
+      xIcon.style.display = isOpen ? "none" : "block";
+    }
+
+    document.getElementById("floatForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: data,
+          headers: { "Accept": "application/json" }
+        });
+        if (res.ok) {
+          form.style.display = "none";
+          document.getElementById("floatSuccess").style.display = "block";
+        }
+      } catch(err) {
+        alert("Something went wrong. Please email us at clairo@gmail.com");
+      }
+    });
+  </script>
+  <!-- END FLOATING WIDGET -->
+
+</body>
+</html>
