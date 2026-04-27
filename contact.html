@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact — Clairo</title>
+  <meta name="description" content="Book a free 15-minute consultation with Clairo. We'll show you the system live and answer every question about your brokerage." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
@@ -13,215 +14,89 @@
       --white: #f5f5f5; --muted: #888888;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); }
-
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 60px;
-      background: rgba(10,10,10,0.92); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 60px; background: rgba(10,10,10,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
     .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 3px; color: var(--white); text-decoration: none; }
     .logo span { color: var(--orange); }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
     .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
     .nav-links a:hover { color: var(--white); }
-    .nav-cta { background: var(--orange); color: var(--black) !important; padding: 10px 22px; border-radius: 6px; font-weight: 600 !important; }
-    .nav-cta:hover { background: var(--orange-dim) !important; color: var(--white) !important; }
-
-    .contact-wrap {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding-top: 80px;
+    .nav-cta { background: var(--orange) !important; color: var(--black) !important; padding: 10px 22px; border-radius: 6px; font-weight: 700 !important; white-space: nowrap; }
+    .nav-cta:hover { background: var(--orange-dim) !important; }
+    .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    .mobile-menu { display: none; position: fixed; top: 65px; left: 0; right: 0; z-index: 99; background: var(--dark); border-bottom: 1px solid var(--border); padding: 20px 24px; flex-direction: column; gap: 0; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--muted); text-decoration: none; font-size: 16px; font-weight: 500; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .mobile-cta { background: var(--orange) !important; color: var(--black) !important; padding: 14px 20px !important; border-radius: 8px !important; font-weight: 700 !important; text-align: center; border: none !important; margin-top: 12px; }
+    .btn-primary { background: var(--orange); color: var(--black); padding: 16px 36px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: all 0.2s; display: inline-block; }
+    .btn-primary:hover { background: var(--orange-dim); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(249,115,22,0.3); }
+    .btn-secondary { background: transparent; color: var(--white); padding: 16px 36px; border-radius: 8px; font-size: 15px; font-weight: 500; text-decoration: none; border: 1px solid var(--border); transition: all 0.2s; display: inline-block; }
+    .btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
+    .section-tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px,5vw,64px); line-height: 1; letter-spacing: 1px; margin-bottom: 20px; }
+    .section-sub { font-size: 16px; color: var(--muted); max-width: 520px; line-height: 1.7; font-weight: 300; }
+    footer { border-top: 1px solid var(--border); padding: 64px 60px 32px; display: grid; grid-template-columns: 1fr 2fr; gap: 60px; }
+    .footer-bottom { grid-column: 1/-1; border-top: 1px solid var(--border); padding-top: 24px; margin-top: 8px; }
+    .footer-bottom p { font-size: 13px; color: var(--muted); }
+    .footer-brand { display: flex; flex-direction: column; gap: 12px; }
+    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 3px; color: var(--white); }
+    .footer-logo span { color: var(--orange); }
+    .footer-brand p { font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 300; max-width: 220px; }
+    .footer-cta { display: inline-block; background: var(--orange); color: var(--black); padding: 10px 20px; border-radius: 6px; font-size: 13px; font-weight: 700; text-decoration: none; transition: background 0.2s; width: fit-content; margin-top: 4px; }
+    .footer-cta:hover { background: var(--orange-dim); }
+    .footer-links-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; }
+    .footer-col { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--white); margin-bottom: 4px; }
+    .footer-col a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--orange); }
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: flex; }
+      footer { grid-template-columns: 1fr; padding: 48px 24px 32px; gap: 40px; }
+      .footer-links-grid { grid-template-columns: repeat(2,1fr); gap: 24px; }
     }
-
-    .contact-left {
-      padding: 100px 80px;
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
+    @media (max-width: 480px) { .footer-links-grid { grid-template-columns: 1fr; } }
+    .contact-wrap { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
+    .contact-left { padding: 100px 80px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
     .page-tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 20px; }
-
-    .contact-left h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(48px, 5vw, 72px);
-      line-height: 0.95;
-      letter-spacing: 2px;
-      margin-bottom: 24px;
-    }
-
+    .contact-left h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px,5vw,72px); line-height: 0.95; letter-spacing: 2px; margin-bottom: 24px; }
     .contact-left h1 span { color: var(--orange); }
-
-    .contact-left p {
-      font-size: 16px;
-      color: var(--muted);
-      line-height: 1.7;
-      font-weight: 300;
-      margin-bottom: 48px;
-      max-width: 420px;
-    }
-
+    .contact-left > p { font-size: 16px; color: var(--muted); line-height: 1.7; font-weight: 300; margin-bottom: 48px; max-width: 420px; }
     .contact-info { display: flex; flex-direction: column; gap: 24px; }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .contact-icon {
-      width: 44px; height: 44px;
-      background: var(--gray);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-    }
-
+    .contact-item { display: flex; align-items: center; gap: 16px; }
+    .contact-icon { width: 44px; height: 44px; background: var(--gray); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
     .contact-item-text { display: flex; flex-direction: column; gap: 2px; }
     .contact-item-label { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
-    .contact-item-value { font-size: 15px; color: var(--white); font-weight: 400; }
+    .contact-item-value { font-size: 15px; color: var(--white); }
     .contact-item-value a { color: var(--orange); text-decoration: none; }
     .contact-item-value a:hover { text-decoration: underline; }
-
-    .contact-right {
-      padding: 100px 80px;
-      background: var(--dark);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .calendly-box {
-      background: var(--black);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 48px 40px;
-      text-align: center;
-    }
-
-    .calendly-box h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 36px;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
-    }
-
+    .contact-right { padding: 100px 80px; background: var(--dark); display: flex; flex-direction: column; justify-content: center; }
+    .calendly-box { background: var(--black); border: 1px solid var(--border); border-radius: 16px; padding: 48px 40px; text-align: center; }
+    .calendly-box h2 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 1px; margin-bottom: 12px; }
     .calendly-box h2 span { color: var(--orange); }
-
-    .calendly-box p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 32px;
-      font-weight: 300;
-    }
-
-    .btn-primary {
-      background: var(--orange); color: var(--black);
-      padding: 18px 40px; border-radius: 8px;
-      font-size: 16px; font-weight: 700;
-      text-decoration: none; transition: all 0.2s;
-      display: inline-block; letter-spacing: 0.5px;
-    }
-    .btn-primary:hover { background: var(--orange-dim); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(249,115,22,0.3); }
-
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin: 32px 0;
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .divider::before, .divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .email-cta {
-      font-size: 14px;
-      color: var(--muted);
-      font-weight: 300;
-    }
-
-    .email-cta a {
-      color: var(--orange);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .what-to-expect {
-      margin-top: 48px;
-      padding-top: 48px;
-      border-top: 1px solid var(--border);
-    }
-
-    .what-to-expect h3 {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 20px;
-    }
-
+    .calendly-box p { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 32px; font-weight: 300; }
+    .divider { display: flex; align-items: center; gap: 16px; margin: 32px 0; color: var(--muted); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .email-cta { font-size: 14px; color: var(--muted); font-weight: 300; }
+    .email-cta a { color: var(--orange); text-decoration: none; font-weight: 500; }
+    .what-to-expect { margin-top: 48px; padding-top: 48px; border-top: 1px solid var(--border); }
+    .what-to-expect h3 { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
     .expect-list { display: flex; flex-direction: column; gap: 16px; }
-
-    .expect-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-    }
-
-    .expect-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 20px;
-      color: var(--orange);
-      flex-shrink: 0;
-      line-height: 1.2;
-    }
-
-    .expect-item p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.5;
-      font-weight: 300;
-    }
-
+    .expect-item { display: flex; align-items: flex-start; gap: 14px; }
+    .expect-num { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--orange); flex-shrink: 0; line-height: 1.2; }
+    .expect-item p { font-size: 14px; color: var(--muted); line-height: 1.5; font-weight: 300; }
     .expect-item p strong { color: var(--white); font-weight: 500; }
-
-    footer { border-top: 1px solid var(--border); padding: 40px 60px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-    footer p { font-size: 13px; color: var(--muted); }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--orange); }
-
     @media (max-width: 900px) {
       .contact-wrap { grid-template-columns: 1fr; }
       .contact-left { padding: 100px 32px 60px; border-right: none; border-bottom: 1px solid var(--border); }
       .contact-right { padding: 60px 32px; }
-      nav { padding: 16px 24px; }
-      .nav-links { display: none; }
-      footer { padding: 32px 24px; }
     }
   </style>
 </head>
 <body>
-
   <nav>
     <a href="index.html" class="logo">CLAI<span>R</span>O</a>
     <ul class="nav-links">
@@ -230,269 +105,164 @@
       <li><a href="about.html">About</a></li>
       <li><a href="team.html">Team</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="https://calendly.com/clairoautomation/30min" target="_blank" class="nav-cta">Book Free Call</a></li>
+      <li><a href="https://calendly.com/clairoautomation/30min" target="_blank" class="nav-cta">Start Free Trial →</a></li>
     </ul>
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
-
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="team.html">Team</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://calendly.com/clairoautomation/30min" target="_blank" class="mobile-cta">Start Free Trial →</a>
+  </div>
   <div class="contact-wrap">
     <div class="contact-left">
       <div class="page-tag">Get In Touch</div>
       <h1>LET'S TALK<br>ABOUT YOUR<br><span>BROKERAGE</span></h1>
       <p>Book a free 15-minute consultation. We'll walk you through exactly how Clairo works and whether it's the right fit for your team.</p>
-
       <div class="contact-info">
         <div class="contact-item">
-          <div class="contact-icon">✉</div>
+          <div class="contact-icon">&#9993;</div>
           <div class="contact-item-text">
             <span class="contact-item-label">Email</span>
             <span class="contact-item-value"><a href="mailto:clairo@gmail.com">clairo@gmail.com</a></span>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">📍</div>
+          <div class="contact-icon">&#128205;</div>
           <div class="contact-item-text">
             <span class="contact-item-label">Location</span>
             <span class="contact-item-value">Houston, TX</span>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">⚡</div>
+          <div class="contact-icon">&#9889;</div>
           <div class="contact-item-text">
             <span class="contact-item-label">Response Time</span>
             <span class="contact-item-value">Within 24 hours</span>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">🎯</div>
+          <div class="contact-icon">&#127919;</div>
           <div class="contact-item-text">
             <span class="contact-item-label">Currently Serving</span>
-            <span class="contact-item-value">Real estate brokerages</span>
+            <span class="contact-item-value">Real estate brokerages in Houston</span>
           </div>
         </div>
       </div>
     </div>
-
     <div class="contact-right">
       <div class="calendly-box">
         <h2>BOOK YOUR<br><span>FREE CALL</span></h2>
-        <p>15 minutes. No sales pressure. We'll show you the system live and answer every question you have.</p>
-        <a href="https://calendly.com/clairoautomation/30min" target="_blank" class="btn-primary">Pick a Time →</a>
-
+        <p>15 minutes. No sales pressure. We'll show you the system live and answer every question you have about your brokerage.</p>
+        <a href="https://calendly.com/clairoautomation/30min" target="_blank" class="btn-primary">Pick a Time &#8594;</a>
         <div class="divider">or</div>
-
         <p class="email-cta">Prefer email? Reach us at <a href="mailto:clairo@gmail.com">clairo@gmail.com</a></p>
       </div>
-
       <div class="what-to-expect">
         <h3>What to expect on the call</h3>
         <div class="expect-list">
           <div class="expect-item">
             <span class="expect-num">01</span>
-            <p><strong>Live demo.</strong> We'll show you the full system working in real time — form submission, AI scoring, agent alert, CRM logging.</p>
+            <p><strong>Live demo.</strong> We'll show you the full system working in real time — form submission, AI scoring, agent alert, CRM logging. No slides, no decks.</p>
           </div>
           <div class="expect-item">
             <span class="expect-num">02</span>
-            <p><strong>Your questions answered.</strong> Ask anything about how it works, how it integrates, and what the setup process looks like.</p>
+            <p><strong>Your questions answered.</strong> Ask anything about how it works, how it integrates with your current setup, and what the onboarding process looks like.</p>
           </div>
           <div class="expect-item">
             <span class="expect-num">03</span>
-            <p><strong>No pressure.</strong> If it's a fit, we'll get you started on your 30-day free trial. If not, no hard feelings.</p>
+            <p><strong>No pressure.</strong> If it's a fit, we'll get you started on your 30-day free trial. If not, no hard feelings — we genuinely want what's right for your business.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <footer>
-    <p>© 2026 Clairo. Built for Houston real estate brokerages.</p>
-    <div class="footer-links">
-      <a href="pricing.html">Services</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
+    <div class="footer-brand">
+      <span class="footer-logo">CLAI<span>R</span>O</span>
+      <p>AI-powered lead automation for Houston real estate brokerages.</p>
+      <a href="https://calendly.com/clairoautomation/30min" target="_blank" class="footer-cta">Book Free 15-Min Call →</a>
+    </div>
+    <div class="footer-links-grid">
+      <div class="footer-col">
+        <span class="footer-col-title">Company</span>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="team.html">Meet the Team</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Services</span>
+        <a href="pricing.html">All Services</a>
+        <a href="pricing.html">Tier 1 — Lead Automation</a>
+        <a href="pricing.html">Tier 2 — Growth Pack</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Contact</span>
+        <a href="contact.html">Get In Touch</a>
+        <a href="mailto:clairo@gmail.com">clairo@gmail.com</a>
+        <a href="https://calendly.com/clairoautomation/30min" target="_blank">Book a Call</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Legal</span>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Clairo. Built in Houston, TX. All rights reserved.</p>
     </div>
   </footer>
-
-
-  <!-- FLOATING CONTACT WIDGET -->
   <style>
-    .float-btn {
-      position: fixed;
-      bottom: 32px;
-      right: 32px;
-      z-index: 999;
-      width: 56px;
-      height: 56px;
-      background: #f97316;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 24px rgba(249,115,22,0.4);
-      transition: all 0.2s;
-      border: none;
-    }
+    .float-btn { position: fixed; bottom: 32px; right: 32px; z-index: 999; width: 56px; height: 56px; background: #f97316; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 24px rgba(249,115,22,0.4); transition: all 0.2s; border: none; }
     .float-btn:hover { background: #c05a0d; transform: scale(1.08); }
     .float-btn svg { width: 24px; height: 24px; }
-
-    .float-panel {
-      position: fixed;
-      bottom: 100px;
-      right: 32px;
-      z-index: 998;
-      width: 360px;
-      background: #111111;
-      border: 1px solid #222222;
-      border-radius: 20px;
-      padding: 32px 28px;
-      box-shadow: 0 16px 64px rgba(0,0,0,0.6);
-      display: none;
-      animation: slideUp 0.25s ease;
-    }
-
+    .float-panel { position: fixed; bottom: 100px; right: 32px; z-index: 998; width: 360px; background: #111111; border: 1px solid #222222; border-radius: 20px; padding: 32px 28px; box-shadow: 0 16px 64px rgba(0,0,0,0.6); display: none; animation: slideUp 0.25s ease; }
     .float-panel.open { display: block; }
-
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .float-panel h3 {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 26px;
-      letter-spacing: 1px;
-      color: #f5f5f5;
-      margin-bottom: 4px;
-    }
-
+    @keyframes slideUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    .float-panel h3 { font-family: "Bebas Neue", sans-serif; font-size: 26px; letter-spacing: 1px; color: #f5f5f5; margin-bottom: 4px; }
     .float-panel h3 span { color: #f97316; }
-
-    .float-panel p {
-      font-size: 13px;
-      color: #888888;
-      margin-bottom: 20px;
-      font-weight: 300;
-      line-height: 1.5;
-    }
-
-    .float-panel input,
-    .float-panel textarea {
-      width: 100%;
-      background: #1a1a1a;
-      border: 1px solid #222222;
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 14px;
-      color: #f5f5f5;
-      font-family: "DM Sans", sans-serif;
-      margin-bottom: 12px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .float-panel input:focus,
-    .float-panel textarea:focus { border-color: #f97316; }
-
+    .float-panel > p { font-size: 13px; color: #888888; margin-bottom: 20px; font-weight: 300; line-height: 1.5; }
+    .float-panel input, .float-panel textarea { width: 100%; background: #1a1a1a; border: 1px solid #222222; border-radius: 8px; padding: 10px 14px; font-size: 14px; color: #f5f5f5; font-family: "DM Sans", sans-serif; margin-bottom: 12px; outline: none; transition: border-color 0.2s; }
+    .float-panel input:focus, .float-panel textarea:focus { border-color: #f97316; }
     .float-panel textarea { resize: vertical; min-height: 90px; }
-
-    .float-panel button[type="submit"] {
-      width: 100%;
-      background: #f97316;
-      color: #0a0a0a;
-      border: none;
-      border-radius: 8px;
-      padding: 12px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: "DM Sans", sans-serif;
-      transition: background 0.2s;
-      letter-spacing: 0.5px;
-    }
-
+    .float-panel button[type="submit"] { width: 100%; background: #f97316; color: #0a0a0a; border: none; border-radius: 8px; padding: 12px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: "DM Sans", sans-serif; transition: background 0.2s; }
     .float-panel button[type="submit"]:hover { background: #c05a0d; }
-
-    .float-success {
-      text-align: center;
-      padding: 16px 0;
-      display: none;
-    }
-
-    .float-success .check {
-      width: 52px; height: 52px;
-      background: #dcfce7;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 16px;
-    }
-
-    .float-success h4 {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 22px;
-      letter-spacing: 1px;
-      color: #f5f5f5;
-      margin-bottom: 6px;
-    }
-
+    .float-success { text-align: center; padding: 16px 0; display: none; }
+    .float-success .check { width: 52px; height: 52px; background: #dcfce7; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .float-success h4 { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 1px; color: #f5f5f5; margin-bottom: 6px; }
     .float-success p { font-size: 13px; color: #888888; font-weight: 300; }
-
-    .close-btn {
-      position: absolute;
-      top: 16px; right: 20px;
-      background: none;
-      border: none;
-      color: #888888;
-      font-size: 20px;
-      cursor: pointer;
-      line-height: 1;
-      padding: 4px;
-      transition: color 0.2s;
-    }
+    .close-btn { position: absolute; top: 16px; right: 20px; background: none; border: none; color: #888888; font-size: 20px; cursor: pointer; line-height: 1; padding: 4px; transition: color 0.2s; }
     .close-btn:hover { color: #f5f5f5; }
-
-    @media (max-width: 480px) {
-      .float-panel { width: calc(100vw - 32px); right: 16px; }
-      .float-btn { right: 16px; bottom: 24px; }
-    }
+    @media (max-width: 480px) { .float-panel { width: calc(100vw - 32px); right: 16px; } .float-btn { right: 16px; bottom: 24px; } }
   </style>
-
   <button class="float-btn" onclick="togglePanel()" aria-label="Contact us">
-    <svg id="float-icon-msg" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-    </svg>
-    <svg id="float-icon-x" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2.5" stroke-linecap="round" style="display:none">
-      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-    </svg>
+    <svg id="float-icon-msg" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <svg id="float-icon-x" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2.5" stroke-linecap="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </button>
-
   <div class="float-panel" id="floatPanel">
-    <button class="close-btn" onclick="togglePanel()">✕</button>
+    <button class="close-btn" onclick="togglePanel()">&#10005;</button>
     <h3>SEND US A <span>MESSAGE</span></h3>
-    <p>Not ready to book a call? No problem — send us a message and we will get back to you within 24 hours.</p>
-
+    <p>Not ready to book a call? Send us a message and we'll get back to you within 24 hours.</p>
     <form id="floatForm" action="https://formspree.io/f/xbdqvodp" method="POST">
       <input type="text" name="name" placeholder="Your name" required />
       <input type="email" name="email" placeholder="Your email" required />
-      <input type="text" name="business" placeholder="Your business (optional)" />
+      <input type="text" name="business" placeholder="Your brokerage (optional)" />
       <textarea name="message" placeholder="What would you like to know?" required></textarea>
-      <button type="submit">Send Message →</button>
+      <button type="submit">Send Message &#8594;</button>
     </form>
-
     <div class="float-success" id="floatSuccess">
-      <div class="check">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="26" height="26">
-          <polyline points="20 6 9 17 4 12"/>
-        </svg>
-      </div>
+      <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><polyline points="20 6 9 17 4 12"/></svg></div>
       <h4>MESSAGE SENT!</h4>
-      <p>We will get back to you within 24 hours.</p>
+      <p>We'll get back to you within 24 hours.</p>
     </div>
   </div>
-
   <script>
+    function toggleMobileMenu() { document.getElementById("mobileMenu").classList.toggle("open"); }
     function togglePanel() {
       const panel = document.getElementById("floatPanel");
       const msgIcon = document.getElementById("float-icon-msg");
@@ -502,27 +272,14 @@
       msgIcon.style.display = isOpen ? "block" : "none";
       xIcon.style.display = isOpen ? "none" : "block";
     }
-
     document.getElementById("floatForm").addEventListener("submit", async function(e) {
       e.preventDefault();
       const form = e.target;
-      const data = new FormData(form);
       try {
-        const res = await fetch(form.action, {
-          method: "POST",
-          body: data,
-          headers: { "Accept": "application/json" }
-        });
-        if (res.ok) {
-          form.style.display = "none";
-          document.getElementById("floatSuccess").style.display = "block";
-        }
-      } catch(err) {
-        alert("Something went wrong. Please email us at clairo@gmail.com");
-      }
+        const res = await fetch(form.action, { method: "POST", body: new FormData(form), headers: { "Accept": "application/json" } });
+        if (res.ok) { form.style.display = "none"; document.getElementById("floatSuccess").style.display = "block"; }
+      } catch(err) { alert("Something went wrong. Please email us at clairo@gmail.com"); }
     });
   </script>
-  <!-- END FLOATING WIDGET -->
-
 </body>
 </html>
