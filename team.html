@@ -9,32 +9,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --black: #0a0a0a; --dark: #111111; --gray: #1a1a1a; --mid: #2a2a2a;
-      --border: #222222; --orange: #f97316; --orange-dim: #c05a0d;
-      --white: #f5f5f5; --muted: #888888;
+      --black: #050c1a;
+      --dark: #071020;
+      --gray: #0d1a30;
+      --mid: #152340;
+      --border: #1a3356;
+      --blue: #2563eb;
+      --blue-dim: #1d4ed8;
+      --blue-bright: #3b82f6;
+      --white: #eef4ff;
+      --muted: #6b9fd4;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; } body { background-image: radial-gradient(ellipse at 20% 0%, rgba(37,99,235,0.07) 0%, transparent 50%), radial-gradient(ellipse at 80% 100%, rgba(59,130,246,0.05) 0%, transparent 50%); }
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 60px; background: rgba(10,10,10,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
     .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 3px; color: var(--white); text-decoration: none; }
-    .logo span { color: var(--orange); }
+    .logo span { color: var(--blue); }
     .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
     .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
     .nav-links a:hover { color: var(--white); }
-    .nav-cta { background: var(--orange) !important; color: var(--black) !important; padding: 10px 22px; border-radius: 6px; font-weight: 700 !important; white-space: nowrap; }
-    .nav-cta:hover { background: var(--orange-dim) !important; }
+    .nav-cta { background: #2563eb !important; color: #ffffff !important; padding: 10px 22px; border-radius: 6px; font-weight: 700 !important; white-space: nowrap; }
+    .nav-cta:hover { background: #1d4ed8 !important; color: #ffffff !important; }
     .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
     .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
     .mobile-menu { display: none; position: fixed; top: 65px; left: 0; right: 0; z-index: 99; background: var(--dark); border-bottom: 1px solid var(--border); padding: 20px 24px; flex-direction: column; gap: 0; }
     .mobile-menu.open { display: flex; }
     .mobile-menu a { color: var(--muted); text-decoration: none; font-size: 16px; font-weight: 500; padding: 14px 0; border-bottom: 1px solid var(--border); }
-    .mobile-cta { background: var(--orange) !important; color: var(--black) !important; padding: 14px 20px !important; border-radius: 8px !important; font-weight: 700 !important; text-align: center; border: none !important; margin-top: 12px; }
-    .btn-primary { background: var(--orange); color: var(--black); padding: 16px 36px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: all 0.2s; display: inline-block; }
-    .btn-primary:hover { background: var(--orange-dim); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(249,115,22,0.3); }
+    .mobile-cta { background: #2563eb !important; color: #ffffff !important; padding: 14px 20px !important; border-radius: 8px !important; font-weight: 700 !important; text-align: center; border: none !important; margin-top: 12px; }
+    .btn-primary { background: var(--blue); color: #ffffff; padding: 16px 36px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: all 0.2s; display: inline-block; }
+    .btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(59,130,246,0.35); }
     .btn-secondary { background: transparent; color: var(--white); padding: 16px 36px; border-radius: 8px; font-size: 15px; font-weight: 500; text-decoration: none; border: 1px solid var(--border); transition: all 0.2s; display: inline-block; }
-    .btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
-    .section-tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+    .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+    .section-tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #60a5fa; margin-bottom: 16px; }
     .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px,5vw,64px); line-height: 1; letter-spacing: 1px; margin-bottom: 20px; }
     .section-sub { font-size: 16px; color: var(--muted); max-width: 520px; line-height: 1.7; font-weight: 300; }
     footer { border-top: 1px solid var(--border); padding: 64px 60px 32px; display: grid; grid-template-columns: 1fr 2fr; gap: 60px; }
@@ -42,15 +49,15 @@
     .footer-bottom p { font-size: 13px; color: var(--muted); }
     .footer-brand { display: flex; flex-direction: column; gap: 12px; }
     .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 3px; color: var(--white); }
-    .footer-logo span { color: var(--orange); }
+    .footer-logo span { color: var(--blue); }
     .footer-brand p { font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 300; max-width: 220px; }
-    .footer-cta { display: inline-block; background: var(--orange); color: var(--black); padding: 10px 20px; border-radius: 6px; font-size: 13px; font-weight: 700; text-decoration: none; transition: background 0.2s; width: fit-content; margin-top: 4px; }
-    .footer-cta:hover { background: var(--orange-dim); }
+    .footer-cta { display: inline-block; background: #2563eb; color: #ffffff; padding: 10px 20px; border-radius: 6px; font-size: 13px; font-weight: 700; text-decoration: none; transition: background 0.2s; width: fit-content; margin-top: 4px; }
+    .footer-cta:hover { background: #1d4ed8; }
     .footer-links-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; }
     .footer-col { display: flex; flex-direction: column; gap: 10px; }
     .footer-col-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--white); margin-bottom: 4px; }
     .footer-col a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .footer-col a:hover { color: var(--orange); }
+    .footer-col a:hover { color: #60a5fa; }
     @media (max-width: 900px) {
       nav { padding: 16px 24px; }
       .nav-links { display: none; }
@@ -60,40 +67,40 @@
     }
     @media (max-width: 480px) { .footer-links-grid { grid-template-columns: 1fr; } }
     .page-hero { padding: 140px 60px 80px; text-align: center; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
-    .page-hero::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle,rgba(249,115,22,0.08) 0%,transparent 70%); pointer-events: none; }
-    .page-tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+    .page-hero::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle,rgba(59,130,246,0.1) 0%,transparent 70%); pointer-events: none; }
+    .page-tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #60a5fa; margin-bottom: 16px; }
     .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(56px,8vw,96px); line-height: 0.95; letter-spacing: 2px; margin-bottom: 20px; }
-    .page-hero h1 span { color: var(--orange); }
+    .page-hero h1 span { color: #3b82f6; }
     .page-hero p { font-size: 17px; color: var(--muted); max-width: 480px; margin: 0 auto; line-height: 1.7; font-weight: 300; }
     .team-section { padding: 100px 60px; max-width: 1100px; margin: 0 auto; }
     .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
     .team-card { background: var(--dark); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
-    .team-card:hover { border-color: var(--orange); transform: translateY(-6px); }
+    .team-card:hover { border-color: var(--blue); transform: translateY(-6px); }
     .team-card-top { padding: 48px 48px 32px; position: relative; }
     .team-card-top::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--border); transition: background 0.3s; }
-    .team-card:hover .team-card-top::after { background: var(--orange); }
-    .team-avatar { width: 96px; height: 96px; border-radius: 50%; background: var(--gray); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--orange); margin-bottom: 24px; transition: border-color 0.3s; }
-    .team-card:hover .team-avatar { border-color: var(--orange); }
+    .team-card:hover .team-card-top::after { background: var(--blue); }
+    .team-avatar { width: 96px; height: 96px; border-radius: 50%; background: var(--gray); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: #60a5fa; margin-bottom: 24px; transition: border-color 0.3s; }
+    .team-card:hover .team-avatar { border-color: var(--blue); }
     .team-name { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 1px; margin-bottom: 4px; }
-    .team-role { font-size: 13px; color: var(--orange); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+    .team-role { font-size: 13px; color: #60a5fa; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
     .team-bio { font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: 300; margin-bottom: 12px; }
     .team-card-bottom { border-top: 1px solid var(--border); padding: 28px 48px; }
     .team-skills { display: flex; flex-wrap: wrap; gap: 8px; }
     .skill-tag { background: var(--gray); border: 1px solid var(--border); color: var(--white); font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 100px; transition: border-color 0.2s; }
-    .team-card:hover .skill-tag { border-color: rgba(249,115,22,0.3); }
+    .team-card:hover .skill-tag { border-color: rgba(59,130,246,0.35); }
     .believe-section { background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 100px 60px; }
     .believe-inner { max-width: 1100px; margin: 0 auto; }
     .believe-header { margin-bottom: 64px; }
     .believe-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 24px; }
     .believe-card { background: var(--black); border: 1px solid var(--border); border-radius: 12px; padding: 32px 28px; transition: border-color 0.2s; }
-    .believe-card:hover { border-color: var(--orange); }
+    .believe-card:hover { border-color: var(--blue); }
     .believe-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--border); line-height: 1; margin-bottom: 16px; transition: color 0.2s; }
-    .believe-card:hover .believe-num { color: var(--orange); }
+    .believe-card:hover .believe-num { color: #3b82f6; }
     .believe-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
     .believe-card p { font-size: 14px; color: var(--muted); line-height: 1.6; font-weight: 300; }
     .cta-section { text-align: center; padding: 100px 60px; }
     .cta-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px,6vw,72px); line-height: 0.95; letter-spacing: 2px; margin-bottom: 20px; }
-    .cta-section h2 span { color: var(--orange); }
+    .cta-section h2 span { color: #3b82f6; }
     .cta-section p { font-size: 16px; color: var(--muted); margin-bottom: 40px; font-weight: 300; }
     .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     @media (max-width: 900px) {
@@ -136,7 +143,7 @@
       transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
     }
     .btn-primary:hover::after { transform: translateX(0); }
-    .btn-primary:hover { transform: translateY(-3px) !important; box-shadow: 0 12px 40px rgba(249,115,22,0.4) !important; }
+    .btn-primary:hover { transform: translateY(-3px) !important; box-shadow: 0 12px 40px rgba(59,130,246,0.45) !important; }
     .btn-primary:active { transform: translateY(-1px) !important; }
 
     .btn-secondary {
@@ -151,7 +158,7 @@
     .nav-links a::after {
       content: '';
       position: absolute; bottom: -3px; left: 0; right: 0;
-      height: 1px; background: var(--orange);
+      height: 1px; background: var(--blue);
       transform: scaleX(0); transform-origin: left;
       transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
     }
@@ -176,7 +183,7 @@
       animation: floatPulse 3s ease-in-out infinite;
     }
     @keyframes floatPulse {
-      0%, 100% { box-shadow: 0 4px 24px rgba(249,115,22,0.4); }
+      0%, 100% { box-shadow: 0 4px 24px rgba(59,130,246,0.45); }
       50% { box-shadow: 0 4px 40px rgba(249,115,22,0.7); }
     }
     .float-btn:hover { animation: none !important; }
@@ -193,10 +200,10 @@
 
     /* ── ORANGE GLOW ON HOVER FOR CARDS ── */
     .tier-card:hover {
-      box-shadow: 0 16px 48px rgba(249,115,22,0.12);
+      box-shadow: 0 16px 48px rgba(59,130,246,0.14);
     }
     .team-card:hover {
-      box-shadow: 0 20px 60px rgba(249,115,22,0.1);
+      box-shadow: 0 20px 60px rgba(59,130,246,0.12);
     }
 
     /* ── SMOOTH NAV BACKGROUND ── */
@@ -219,7 +226,7 @@
     .proof-item {
       transition: color 0.2s;
     }
-    .proof-item:hover { color: var(--orange); }
+    .proof-item:hover { color: var(--blue); }
 
     /* ── FOOTER LINK HOVER ── */
     .footer-col a {
@@ -247,9 +254,9 @@
       transition: all 0.2s cubic-bezier(0.4,0,0.2,1) !important;
     }
     .skill-tag:hover {
-      background: rgba(249,115,22,0.1);
-      border-color: var(--orange);
-      color: var(--orange);
+      background: rgba(59,130,246,0.12);
+      border-color: var(--blue);
+      color: var(--blue);
       transform: translateY(-1px);
     }
 
@@ -258,8 +265,8 @@
       animation: badgePulse 2.5s ease-in-out infinite;
     }
     @keyframes badgePulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(249,115,22,0.3); }
-      50% { box-shadow: 0 0 0 6px rgba(249,115,22,0); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.35); }
+      50% { box-shadow: 0 0 0 6px rgba(59,130,246,0); }
     }
 
     /* ── CONTACT ICON HOVER ── */
@@ -267,8 +274,8 @@
       transition: all 0.25s cubic-bezier(0.4,0,0.2,1) !important;
     }
     .contact-item:hover .contact-icon {
-      background: var(--orange);
-      border-color: var(--orange);
+      background: var(--blue);
+      border-color: var(--blue);
       transform: scale(1.1);
     }
 
@@ -294,7 +301,7 @@
       <li><a href="about.html">About</a></li>
       <li><a href="team.html">Team</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="https://calendly.com/clairoautomation/30min" target="_blank" class="nav-cta">Start Free Trial →</a></li>
+      <li><a href="https://calendly.com/clairoautomation/30min" target="_blank" class="nav-cta" style="color:#ffffff!important">Start Free Trial →</a></li>
     </ul>
     <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -415,31 +422,31 @@
     </div>
   </footer>
   <style>
-    .float-btn { position: fixed; bottom: 32px; right: 32px; z-index: 999; width: 56px; height: 56px; background: #f97316; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 24px rgba(249,115,22,0.4); transition: all 0.2s; border: none; }
-    .float-btn:hover { background: #c05a0d; transform: scale(1.08); }
+    .float-btn { position: fixed; bottom: 32px; right: 32px; z-index: 999; width: 56px; height: 56px; background: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 24px rgba(59,130,246,0.45); transition: all 0.2s; border: none; }
+    .float-btn:hover { background: #1d4ed8; transform: scale(1.08); }
     .float-btn svg { width: 24px; height: 24px; }
-    .float-panel { position: fixed; bottom: 100px; right: 32px; z-index: 998; width: 360px; background: #111111; border: 1px solid #222222; border-radius: 20px; padding: 32px 28px; box-shadow: 0 16px 64px rgba(0,0,0,0.6); display: none; animation: slideUp 0.25s ease; }
+    .float-panel { position: fixed; bottom: 100px; right: 32px; z-index: 998; width: 360px; background: #071020; border: 1px solid #1a3356; border-radius: 20px; padding: 32px 28px; box-shadow: 0 16px 64px rgba(0,0,0,0.6); display: none; animation: slideUp 0.25s ease; }
     .float-panel.open { display: block; }
     @keyframes slideUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
-    .float-panel h3 { font-family: "Bebas Neue", sans-serif; font-size: 26px; letter-spacing: 1px; color: #f5f5f5; margin-bottom: 4px; }
-    .float-panel h3 span { color: #f97316; }
-    .float-panel > p { font-size: 13px; color: #888888; margin-bottom: 20px; font-weight: 300; line-height: 1.5; }
-    .float-panel input, .float-panel textarea { width: 100%; background: #1a1a1a; border: 1px solid #222222; border-radius: 8px; padding: 10px 14px; font-size: 14px; color: #f5f5f5; font-family: "DM Sans", sans-serif; margin-bottom: 12px; outline: none; transition: border-color 0.2s; }
-    .float-panel input:focus, .float-panel textarea:focus { border-color: #f97316; }
+    .float-panel h3 { font-family: "Bebas Neue", sans-serif; font-size: 26px; letter-spacing: 1px; color: #eef4ff; margin-bottom: 4px; }
+    .float-panel h3 span { color: #2563eb; }
+    .float-panel > p { font-size: 13px; color: #6b9fd4; margin-bottom: 20px; font-weight: 300; line-height: 1.5; }
+    .float-panel input, .float-panel textarea { width: 100%; background: #0d1a30; border: 1px solid #1a3356; border-radius: 8px; padding: 10px 14px; font-size: 14px; color: #eef4ff; font-family: "DM Sans", sans-serif; margin-bottom: 12px; outline: none; transition: border-color 0.2s; }
+    .float-panel input:focus, .float-panel textarea:focus { border-color: #2563eb; }
     .float-panel textarea { resize: vertical; min-height: 90px; }
-    .float-panel button[type="submit"] { width: 100%; background: #f97316; color: #0a0a0a; border: none; border-radius: 8px; padding: 12px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: "DM Sans", sans-serif; transition: background 0.2s; }
-    .float-panel button[type="submit"]:hover { background: #c05a0d; }
+    .float-panel button[type="submit"] { width: 100%; background: #2563eb; color: #ffffff; border: none; border-radius: 8px; padding: 12px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: "DM Sans", sans-serif; transition: background 0.2s; }
+    .float-panel button[type="submit"]:hover { background: #1d4ed8; }
     .float-success { text-align: center; padding: 16px 0; display: none; }
-    .float-success .check { width: 52px; height: 52px; background: #dcfce7; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
-    .float-success h4 { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 1px; color: #f5f5f5; margin-bottom: 6px; }
-    .float-success p { font-size: 13px; color: #888888; font-weight: 300; }
-    .close-btn { position: absolute; top: 16px; right: 20px; background: none; border: none; color: #888888; font-size: 20px; cursor: pointer; line-height: 1; padding: 4px; transition: color 0.2s; }
-    .close-btn:hover { color: #f5f5f5; }
+    .float-success .check { width: 52px; height: 52px; background: #d1fae5; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .float-success h4 { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 1px; color: #eef4ff; margin-bottom: 6px; }
+    .float-success p { font-size: 13px; color: #6b9fd4; font-weight: 300; }
+    .close-btn { position: absolute; top: 16px; right: 20px; background: none; border: none; color: #6b9fd4; font-size: 20px; cursor: pointer; line-height: 1; padding: 4px; transition: color 0.2s; }
+    .close-btn:hover { color: #eef4ff; }
     @media (max-width: 480px) { .float-panel { width: calc(100vw - 32px); right: 16px; } .float-btn { right: 16px; bottom: 24px; } }
   </style>
   <button class="float-btn" onclick="togglePanel()" aria-label="Contact us">
-    <svg id="float-icon-msg" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    <svg id="float-icon-x" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2.5" stroke-linecap="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    <svg id="float-icon-msg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <svg id="float-icon-x" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </button>
   <div class="float-panel" id="floatPanel">
     <button class="close-btn" onclick="togglePanel()">&#10005;</button>
@@ -453,7 +460,7 @@
       <button type="submit">Send Message &#8594;</button>
     </form>
     <div class="float-success" id="floatSuccess">
-      <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><polyline points="20 6 9 17 4 12"/></svg></div>
       <h4>MESSAGE SENT!</h4>
       <p>We'll get back to you within 24 hours.</p>
     </div>
